@@ -568,7 +568,7 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
   'use strict';
 
   const VERSION = '5.0';
-  const ENCODER_TAG = 'https://tiktok.com/@nto.presett';
+  const ENCODER_TAG = 'By @nto.presett';
   const FOURCC_TOO = new Uint8Array([0xa9, 0x74, 0x6f, 0x6f]); // '©too'
   const SENTINEL_FF = new Uint8Array([0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff]); // 64-bit Unknown Duration Sentinel
   const CONTAINER_BOXES = new Set(['moov', 'trak', 'mdia', 'minf', 'stbl', 'edts']);
@@ -1411,7 +1411,7 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
   'use strict';
 
   /* ---------------------------------------------------------------- constants & settings */
-  var DEFAULT_TAG = 'https://tiktok.com/@nto.presett';
+  var DEFAULT_TAG = 'By @nto.presett';
   var MAX_MOOV_BYTES = 256 * 1024 * 1024;
   var EXTRA_FACTOR = 9;
   var EXTRA_SAMPLE = [0, 0, 0, 4, 0, 0, 0, 0];
@@ -2256,7 +2256,7 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
     return true;
   }
 
-  const FINAL_TOOL_TAG = 'https://tiktok.com/@nto.presett';
+  const FINAL_TOOL_TAG = 'By @nto.presett';
   // Ganti isi tag ©too yang sudah ada (mis. "ADJN Quality Method ...") jadi nto.presett
   // tanpa mengubah ukuran file/offset: sisa ruang diisi box 'free' di dalam ilst.
   function retagToolInPlace(buf, text = FINAL_TOOL_TAG) {
@@ -2842,7 +2842,7 @@ const lockMode=b=>modeEls.forEach(r=>r.disabled=b);
 modeEls.forEach(r=>r.addEventListener("change",applyMode));applyMode();
 
 /* === Cloud: set tag ©too di semua profil sebelum bisa diunduh === */
-const CLOUD_TAG='https://tiktok.com/@nto.presett';
+const CLOUD_TAG='By @nto.presett';
 async function retagCloudBlob(blob){
   try{return await retagCloudBlobInner(blob,CLOUD_TAG);}
   catch(e){console.warn('retag cloud gagal:',e);return blob;}
@@ -3052,10 +3052,10 @@ start.addEventListener("click",async()=>{
     // Tidak hanya mengganti byte teks; jika tag belum ada, buat kotak metadata baru.
     if (typeof retagCloudBlobInner !== 'function') throw new Error('Penulis metadata MP4 tidak tersedia.');
     say('Menanam metadata Method By @nto.presett…');progress(88);
-    const blob=await retagCloudBlobInner(output,'Method By @nto.presett');
+    const blob=await retagCloudBlobInner(output,'By @nto.presett');
     if (!(blob instanceof Blob) || blob.size < 64) throw new Error('Gagal menulis metadata MP4.');
     const verifyBytes=new Uint8Array(await blob.arrayBuffer());
-    const verifyTag=new TextEncoder().encode('Method By @nto.presett');
+    const verifyTag=new TextEncoder().encode('By @nto.presett');
     let verified=false;
     for(let i=0;i<=verifyBytes.length-verifyTag.length;i++){
       let match=true;
