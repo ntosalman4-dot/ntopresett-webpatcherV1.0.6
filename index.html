@@ -741,20 +741,21 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
     return out;
   }
 
-  function makeDataAtom(text) {
+  function makeDataAtom(text, type = FOURCC_TOO) {
     const dataPayload = concatBytes([u32ToBytes(1), u32ToBytes(0), asciiToBytes(text)]);
-    return makeBoxRaw(FOURCC_TOO, makeBox('data', dataPayload));
+    return makeBoxRaw(type, makeBox('data', dataPayload));
   }
+  const FOURCC_ART = new Uint8Array([0xa9, 0x41, 0x52, 0x54]); // '©ART'
   function makeMetaBox(tagText) {
     const hdlrPayload = concatBytes([u32ToBytes(0), u32ToBytes(0), asciiToBytes('mdir'), new Uint8Array(12), new Uint8Array(1)]);
-    return makeBox('meta', concatBytes([u32ToBytes(0), makeBox('hdlr', hdlrPayload), makeBox('ilst', makeDataAtom(tagText))]));
+    return makeBox('meta', concatBytes([u32ToBytes(0), makeBox('hdlr', hdlrPayload), makeBox('ilst', concatBytes([makeDataAtom(tagText), makeDataAtom(tagText, FOURCC_ART)]))]));
   }
   function patchIlst(bytes, tagText) {
     const chunks = [];
     for (const box of scanBoxes(bytes, 0, bytes.length, 'ilst')) {
-      if (box.type !== '©too') chunks.push(cloneBytes(bytes.subarray(box.start, box.end)));
+      if (box.type !== '©too' && box.type !== '©ART') chunks.push(cloneBytes(bytes.subarray(box.start, box.end)));
     }
-    if (tagText) chunks.push(makeDataAtom(tagText));
+    if (tagText) chunks.push(makeDataAtom(tagText), makeDataAtom(tagText, FOURCC_ART));
     return concatBytes(chunks);
   }
   function patchMetaBox(bytes, tagText) {
@@ -1753,7 +1754,8 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
     var text = concat([utf8(tag), new Uint8Array(1)]);
     var data = new Box('data', { payload: concat([be32(1), be32(0), text]) });
     var too = new Box(TOO, { children: [data] });
-    var ilst = new Box('ilst', { children: [too] });
+    var art = new Box('\xa9ART', { children: [cloneBox(data)] });
+    var ilst = new Box('ilst', { children: [too, art] });
     var mhdlr = new Box('hdlr', { payload: concat([new Uint8Array(8), latin1('mdir'), new Uint8Array(13)]) });
     var meta = new Box('meta', { prefix: new Uint8Array(4), children: [mhdlr, ilst] });
     return new Box('udta', { children: [meta] });
@@ -2267,7 +2269,9 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
       let changed = 0, i = 4;
       while ((i = buf.indexOf(0xa9, i)) !== -1) {
         const at = i; i++;
-        if (at < 4 || at + 20 > n || !ty(at, 0xa9, 0x74, 0x6f, 0x6f) || !ty(at + 8, 0x64, 0x61, 0x74, 0x61)) continue;
+        const isToo = ty(at, 0xa9, 0x74, 0x6f, 0x6f);
+        const isArt = ty(at, 0xa9, 0x41, 0x52, 0x54);
+        if (at < 4 || at + 20 > n || (!isToo && !isArt) || !ty(at + 8, 0x64, 0x61, 0x74, 0x61)) continue;
         const S = dv.getUint32(at - 4), D = dv.getUint32(at + 4);
         if (S < 24 || D !== S - 8 || at - 4 + S > n) continue;
         const start = at - 4, textStart = start + 24, textLen = S - 24;
@@ -2855,7 +2859,7 @@ async function retagCloudBlobInner(blob,text){
   const mk=(type,...parts)=>{const body=cat(parts);return cat([w32(8+body.length),T(type),body]);};
   const typeAt=(b,o)=>String.fromCharCode(b[o+4],b[o+5],b[o+6],b[o+7]);
   const kids=(b,from,to)=>{const r=[];let p=from;while(p+8<=to){const sz=u32(b,p);if(sz<8||p+sz>to)throw new Error('box rusak');r.push({s:p,e:p+sz,t:typeAt(b,p)});p+=sz;}return r;};
-  const tagBox=mk('\xa9too',mk('data',w32(1),w32(0),new TextEncoder().encode(text)));
+  const tagBoxes=[mk('\xa9too',mk('data',w32(1),w32(0),new TextEncoder().encode(text))),mk('\xa9ART',mk('data',w32(1),w32(0),new TextEncoder().encode(text)))];
   const CONT=new Set(['trak','mdia','minf','stbl','edts','dinf','udta','ilst']);
 
   // scan box top-level (hanya baca header, tidak memuat mdat)
@@ -2886,26 +2890,26 @@ async function retagCloudBlobInner(blob,text){
     }
     if(t==='moov'){
       const ks=kids(b,ps,e),parts=ks.map(k=>build(b,k.s,k.e,k.t,k.t==='udta',delta,st));
-      if(st.ensure&&!ks.some(k=>k.t==='udta'))parts.push(mk('udta',mk('meta',w32(0),mk('hdlr',w32(0),w32(0),T('mdir'),new Uint8Array(13)),mk('ilst',tagBox))));
+      if(st.ensure&&!ks.some(k=>k.t==='udta'))parts.push(mk('udta',mk('meta',w32(0),mk('hdlr',w32(0),w32(0),T('mdir'),new Uint8Array(13)),mk('ilst',...tagBoxes))));
       return mk('moov',...parts);
     }
     if(t==='meta'){
       const ks=kids(b,ps+4,e),parts=ks.map(k=>build(b,k.s,k.e,k.t,top,delta,st));
-      if(st.ensure&&top&&!ks.some(k=>k.t==='ilst'))parts.push(mk('ilst',tagBox));
+      if(st.ensure&&top&&!ks.some(k=>k.t==='ilst'))parts.push(mk('ilst',...tagBoxes));
       return mk('meta',b.slice(ps,ps+4),...parts);
     }
     if(t==='ilst'){
-      let here=false;const parts=[];
+      let found=false;const parts=[];
       for(const k of kids(b,ps,e)){
-        if(k.t==='\xa9too'){st.found++;here=true;parts.push(tagBox);}
+        if(k.t==='\xa9too'||k.t==='\xa9ART'){st.found++;found=true;}
         else parts.push(b.slice(k.s,k.e));
       }
-      if(st.ensure&&top&&!here)parts.push(tagBox);
+      if(found||st.ensure&&top)parts.push(...tagBoxes);
       return mk('ilst',...parts);
     }
     if(t==='udta'){
       const ks=kids(b,ps,e),parts=ks.map(k=>build(b,k.s,k.e,k.t,top,delta,st));
-      if(st.ensure&&top&&!ks.some(k=>k.t==='meta'))parts.push(mk('meta',w32(0),mk('hdlr',w32(0),w32(0),T('mdir'),new Uint8Array(13)),mk('ilst',tagBox)));
+      if(st.ensure&&top&&!ks.some(k=>k.t==='meta'))parts.push(mk('meta',w32(0),mk('hdlr',w32(0),w32(0),T('mdir'),new Uint8Array(13)),mk('ilst',...tagBoxes)));
       return mk('udta',...parts);
     }
     if(CONT.has(t)){
