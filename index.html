@@ -61,7 +61,8 @@ button,input{font:inherit;color:inherit}
 .seg span{display:block;text-align:center;padding:11px 2px;border-radius:11px;font-weight:600;font-size:13px;white-space:nowrap;color:var(--muted);transition:background .15s,color .15s}
 .seg input:checked+span{background:var(--violet);color:#14091f}
 .seg input:focus-visible+span{outline:2px solid var(--violet);outline-offset:2px}
-.modedesc{margin:10px 2px 0;color:var(--muted);font-size:13px;min-height:20px}
+.modedesc{margin:10px 2px 0;color:var(--muted);font-size:13px;min-height:20px;white-space:pre-line}
+.audio-fix-notice{display:none;margin:12px 0 0;padding:16px 20px;border-left:6px solid #f3c45e;border-radius:16px;background:#29261d;color:#f3d58d;font-family:inherit;font-size:clamp(16px,4.4vw,21px);line-height:1.55;font-weight:400;box-shadow:inset 0 0 0 1px rgba(243,196,94,.06)}.audio-fix-notice.visible{display:block}
 
 .go{width:100%;margin-top:18px;border:0;border-radius:16px;padding:16px;background:var(--violet);color:#14091f;font:700 16px var(--display);cursor:pointer;transition:background .15s,transform .1s}
 .go:hover:not(:disabled){background:#c093ff}
@@ -367,7 +368,175 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
 /* Local method profiles */
 #adjnEnginePanel .adjn-engine-seg span{font-size:12px}
 @media(max-width:440px){#adjnEnginePanel .adjn-engine-seg span{font-size:10.5px;padding-left:2px;padding-right:2px}}
-</style></head>
+
+
+/* Shared premium processing panel for every profile (visual-only refinement) */
+#proc.card{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:clamp(20px,5vw,30px);
+  border:1px solid #343941;border-radius:26px;
+  background:radial-gradient(120% 85% at 0% 0%,rgba(255,255,255,.055),transparent 58%),linear-gradient(145deg,#191b1f 0%,#121417 100%);
+  box-shadow:0 18px 48px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.045);
+}
+#proc.card::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.24),transparent);pointer-events:none}
+#proc .phead{margin-bottom:26px}
+#proc .phead h2{font-size:clamp(20px,5vw,25px);font-weight:750;letter-spacing:-.035em;color:#f4f5f7}
+#proc .timer{padding:8px 13px;gap:8px;background:#202329;border:1px solid #3a4048;border-radius:999px;color:#d0d4da;font-size:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+#proc .timer svg{width:17px;height:17px;color:#c7cdd5}
+#proc .pct{align-items:flex-end;gap:14px;margin-bottom:17px}
+#proc .pct strong{font-size:clamp(54px,14vw,76px);line-height:.92;letter-spacing:-.065em;color:#f5f6f8;text-shadow:0 4px 24px rgba(255,255,255,.07)}
+#proc .pct strong i{font-size:clamp(23px,6vw,30px);color:#aeb4bd;margin-left:4px}
+#proc .pct>span{max-width:56%;font-size:clamp(13px,3.5vw,16px);line-height:1.55;color:#aeb4bd}
+#proc .bar{height:11px;padding:2px;border:1px solid #3a4048;background:#292d33;border-radius:99px;box-shadow:inset 0 2px 4px rgba(0,0,0,.35)}
+#proc .fill{position:relative;overflow:hidden;background:linear-gradient(90deg,#9da6b1 0%,#e8ebef 52%,#b9c2cc 100%);box-shadow:0 0 14px rgba(220,228,238,.2);transition:width .55s cubic-bezier(.22,.75,.25,1)}
+#proc .fill::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 25%,rgba(255,255,255,.58) 48%,transparent 70%);transform:translateX(-110%);animation:procShine 2.6s ease-in-out infinite}
+#proc .steps{gap:10px;margin:24px 0 15px}
+#proc .step{grid-template-columns:42px minmax(0,1fr) 76px;align-items:center;gap:13px;padding:16px 15px;border:1px solid #30353c;border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));box-shadow:inset 0 1px 0 rgba(255,255,255,.025);transition:border-color .35s ease,background .35s ease,transform .35s ease,box-shadow .35s ease}
+#proc .step:not(:last-child)::after{display:none}
+#proc .step .dot{width:40px;height:40px;margin:0;border:1.5px solid #515963;background:#20242a;color:#e7ebef;box-shadow:0 0 0 5px rgba(255,255,255,.018)}
+#proc .step[data-state=active]{border-color:#697582;background:linear-gradient(135deg,rgba(188,201,216,.11),rgba(255,255,255,.025));box-shadow:0 8px 24px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.06);transform:translateY(-1px)}
+#proc .step[data-state=active] .dot{border-color:#d5dce4;background:#2a3038;box-shadow:0 0 0 5px rgba(206,218,231,.07),0 0 22px rgba(206,218,231,.12)}
+#proc .step[data-state=active] .dot::after{width:19px;height:19px;border:2px solid #e3e8ee;border-top-color:transparent;animation:spin .85s linear infinite}
+#proc .step[data-state=done] .dot{background:#d8e0e8;border-color:#d8e0e8}
+#proc .step[data-state=done] .dot::after{border-color:#1b222a;border-width:0 2.5px 2.5px 0}
+#proc .step b{font-size:clamp(15px,4vw,18px);font-weight:700;letter-spacing:-.025em;color:#f1f3f5}
+#proc .step .sub{margin-top:4px;font-size:13px;line-height:1.4;color:#9da5af}
+#proc .step em{font-size:13px;font-weight:700;color:#aeb6c0}
+#proc .step[data-state=active] em{color:#e1e6ec}
+#proc .step[data-state=done] em{color:#d7e1e9}
+#proc .mini{height:6px;margin-top:11px;background:#2b3036;border-radius:99px}
+#proc .mini i{background:linear-gradient(90deg,#aab4bf,#edf1f5);transition:width .5s cubic-bezier(.22,.75,.25,1)}
+#proc .mini.indet i{background:linear-gradient(90deg,#aab4bf,#f0f3f6,#aab4bf)}
+#proc .modedesc{margin:16px 2px 0!important;color:#9ca3ac;font-size:13px;line-height:1.55}
+@keyframes procShine{0%,25%{transform:translateX(-110%)}75%,100%{transform:translateX(110%)}}
+@media(max-width:380px){#proc .step{grid-template-columns:36px minmax(0,1fr) 58px;gap:10px;padding:13px 11px}#proc .step .dot{width:35px;height:35px}#proc .step em{font-size:11px}#proc .pct>span{max-width:52%}}
+@media(prefers-reduced-motion:reduce){#proc .fill,#proc .step,#proc .mini i{transition:none!important}#proc .fill::after,#proc .step[data-state=active] .dot::after,#proc .mini.indet i{animation:none!important}}
+
+</style>
+<style id="nto-smooth-ui-polish">
+/* NTO Smooth UI — visual-only layer; processing scripts and engine are unchanged */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 18px;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  min-height: 100%;
+  overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.wrap {
+  isolation: isolate;
+}
+.card,
+.compare-card,
+.tool-launch-card,
+.tool-tile,
+.history-item,
+.picked,
+.drop,
+.workspace-tab,
+.tool-open-btn,
+.btn,
+.go,
+.secondary-btn,
+.compare-pick,
+.compare-action {
+  transition:
+    transform .28s cubic-bezier(.2,.75,.25,1),
+    border-color .28s ease,
+    background-color .28s ease,
+    box-shadow .28s ease,
+    opacity .28s ease,
+    color .2s ease;
+}
+.card,
+.compare-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+button,
+a,
+label,
+summary,
+.tool-modal-content,
+.log {
+  -webkit-tap-highlight-color: transparent;
+}
+.tool-modal-content,
+.log {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #555b63 transparent;
+}
+.tool-modal-content::-webkit-scrollbar,
+.log::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.tool-modal-content::-webkit-scrollbar-thumb,
+.log::-webkit-scrollbar-thumb {
+  background: #555b63;
+  border-radius: 99px;
+}
+details > summary {
+  transition: color .22s ease;
+}
+details[open] > summary {
+  color: #f3f4f5;
+}
+:focus-visible {
+  scroll-margin-block: 20px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .card:not(#proc):hover,
+  .compare-card:hover {
+    border-color: #454b54;
+    box-shadow: 0 20px 52px #0005, inset 0 1px 0 #ffffff0a;
+  }
+  .tool-launch-card:hover,
+  .tool-tile:hover {
+    transform: translateY(-2px);
+    border-color: #555c65;
+  }
+  .picked:hover,
+  .history-item:hover {
+    border-color: #555c65;
+  }
+}
+@media (max-width: 600px) {
+  html { scroll-padding-top: 10px; }
+  body { scroll-behavior: smooth; }
+  .wrap { gap: 18px; }
+  .card,
+  .compare-card {
+    transform: translate3d(0,0,0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  .tool-modal-content,
+  .log {
+    scroll-behavior: auto !important;
+  }
+  #nto-smooth-ui-polish ~ * {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .card,
+  .compare-card,
+  .tool-launch-card,
+  .tool-tile {
+    transform: none !important;
+  }
+}
+</style>
+
+</head>
 <body>
 <main class="wrap">
 
@@ -376,7 +545,7 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
     <div>
       <h1>Nto.presett<small>V1.0.9</small></h1>
       <p class="brand-subtitle">Web Patcher</p>
-      <p class="brand-description">Proses videomu dengan HQ Method dan encode, lalu upload ke TikTok.</p>
+      <p class="brand-description">Proses videomu dengan Metode Cloud Atau Local, lalu upload ke TikTok.</p>
     </div>
   </header>
 
@@ -417,10 +586,10 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
       <div class="seg adjn-engine-seg" role="radiogroup" aria-labelledby="localProfileLabel">
         <label><input type="radio" name="adjnEngine" value="compressbase" checked><span>PRO MAX+</span></label>
         <label><input type="radio" name="adjnEngine" value="editing-news"><span>Celyn</span></label>
-        <label><input type="radio" name="adjnEngine" value="zilem"><span>Celyn Beta</span></label>
       </div>
     </div>
     <p class="modedesc" id="modeDesc"></p>
+    <div class="audio-fix-notice" id="audioFixNotice" role="status">(Bug Audio Fix. Sekarang Identifikasi Audio sudah diperbaiki)</div>
 
     <button class="go" id="start" disabled>Proses video</button>
   </section>
@@ -486,8 +655,8 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
     <div class="pct"><strong><span id="pctNum">0</span><i>%</i></strong><span id="status">Menyiapkan…</span></div>
     <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"><div class="fill" id="fill"></div></div>
     <div class="steps">
-      <div class="step" id="hq" data-state="wait"><span class="dot"></span><div class="sb"><b>HQ Method</b><span class="sub">Antre</span><div class="mini"><i></i></div></div><em>Menunggu</em></div>
-      <div class="step" id="enc" data-state="wait"><span class="dot"></span><div class="sb"><b>Encode video</b><span class="sub">Antre</span><div class="mini"><i></i></div></div><em>Menunggu</em></div>
+      <div class="step" id="hq" data-state="wait"><span class="dot"></span><div class="sb"><b>Pro</b><span class="sub">Antre</span><div class="mini"><i></i></div></div><em>Menunggu</em></div>
+      <div class="step" id="enc" data-state="wait"><span class="dot"></span><div class="sb"><b>Max</b><span class="sub">Antre</span><div class="mini"><i></i></div></div><em>Menunggu</em></div>
     </div>
     <p class="modedesc" style="margin-top:6px">Jangan tutup halaman sampai proses selesai.</p>
   </section>
@@ -537,7 +706,7 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
     <summary>Cara pakai</summary>
     <ol>
       <li><span><b>Pilih video.</b> Ketuk kotak di atas, atau seret file ke dalamnya.</span></li>
-      <li><span><b>Pilih profil.</b> Pro Max menjalankan HQ Method dan encode secara berurutan, tanpa pengaturan tambahan.</span></li>
+      <li><span><b>Pilih profil.</b> Pro Max menjalankan Pro dan Max secara berurutan, tanpa pengaturan tambahan.</span></li>
       <li><span><b>Tekan Proses video</b> dan tunggu. Upload, rendering, dan download berjalan lewat server.</span></li>
       <li><span><b>Unduh hasilnya</b> setelah status selesai.</span></li>
       <li><span><b>Upload ke TikTok,</b> lalu atur sampul dan sound secara manual.</span></li>
@@ -2599,7 +2768,7 @@ const mb=n=>(n/1048576).toFixed(1)+" MB";
 const say=(s,cls="")=>{statusEl.textContent=s;statusEl.className=cls};
 const progress=n=>{const v=Math.max(0,Math.min(100,n));fill.style.width=v+"%";pctNum.textContent=Math.round(v);fill.parentElement.setAttribute("aria-valuenow",Math.round(v))};
 const LABEL={wait:"Menunggu",active:"Berjalan",done:"Selesai",skip:"Dilewati",fail:"Gagal"};
-const stepFor=l=>/^(HQ|Hasil HQ)/.test(l)?hq:enc;
+const stepFor=l=>/^(Pro|HQ|Hasil Pro)/.test(l)?hq:enc;
 const KIND={upload:"Upload",server:"Server memproses",download:"Mengunduh"};
 function setPhase(label,kind,pct,detail){
   const el=stepFor(label);el.dataset.state="active";
@@ -2841,11 +3010,11 @@ const MODES={
   adjn:"Local menggunakan engine pemrosesan ADJN.",
   compressbase:"PRO MAX+: profil CompressBase yang sudah tersedia.",
   "editing-news":"Celyn: Mengoptimalkan kualitas visual video dengan hasil yang lebih jernih dan tajam.",
-  zilem:"Celyn Beta: Pengembangan metode Celyn dengan pendekatan pemrosesan alternatif."
+  zilem:""
 };
 const getMethod=()=>document.querySelector('input[name="method"]:checked')?.value||"cloud";
 const getMode=()=>{if(getMethod()!=="local")return document.querySelector('input[name="mode"]:checked')?.value||"both";return document.querySelector('input[name="adjnEngine"]:checked')?.value||"adjn";};
-const applyMode=()=>{$("modeDesc").textContent=MODES[getMode()]};
+const applyMode=()=>{$("modeDesc").textContent=MODES[getMode()];$("audioFixNotice").classList.toggle("visible",getMode()==="editing-news")};
 const lockMode=b=>modeEls.forEach(r=>r.disabled=b);
 modeEls.forEach(r=>r.addEventListener("change",applyMode));applyMode();
 
@@ -2952,15 +3121,15 @@ start.addEventListener("click",async()=>{
     let finalBlob=null;
     if(useHq){
       const hqEnd=useEnc?42:88,hqDlEnd=useEnc?52:100;
-      const hqId=await upload(selected,"/uploaden/",false,5,hqEnd,"HQ Method");
-      progress(hqEnd);say("HQ Method selesai. Mengambil hasil…");
-      finalBlob=await downloadFile(hqId,hqEnd,hqDlEnd,"Hasil HQ");await cleanup(hqId);stage(hq,"done");
+      const hqId=await upload(selected,"/uploaden/",false,5,hqEnd,"Pro");
+      progress(hqEnd);say("Pro selesai. Mengambil hasil…");
+      finalBlob=await downloadFile(hqId,hqEnd,hqDlEnd,"Hasil Pro");await cleanup(hqId);stage(hq,"done");
     }
     if(useEnc){
       let src=selected,encStart=5,encEnd=88;
       if(useHq){src=new File([finalBlob],"wanzyy hq.mp4",{type:"video/mp4"});encStart=52;encEnd=90}
-      stage(enc,"active","Mengunggah");say(useHq?"Mengirim hasil HQ ke encoder…":"Mengirim video ke encoder…");
-      const encId=await upload(src,"/upload/",true,encStart,encEnd,"Encode video");
+      stage(enc,"active","Mengunggah");say(useHq?"Mengirim hasil Pro ke encoder…":"Mengirim video ke encoder…");
+      const encId=await upload(src,"/upload/",true,encStart,encEnd,"Max");
       progress(encEnd);say("Encode selesai. Mengunduh hasil akhir…");
       finalBlob=await downloadFile(encId,encEnd,100,"Hasil akhir");await cleanup(encId);stage(enc,"done");
     }
@@ -3034,7 +3203,7 @@ start.addEventListener("click",async()=>{
     const local=document.querySelector('input[name="method"]:checked')?.value==='local';
     const eng=document.querySelector('input[name="adjnEngine"]:checked')?.value||'3.1';
     const title=hq.querySelector('b');
-    if(title) title.textContent=local?engineName(eng):'HQ Method';
+    if(title) title.textContent=local?engineName(eng):'Pro';
     enc.style.display=local?'none':'';
   }
   methodRadios.forEach(r=>r.addEventListener('change',syncAdjnPanel));
