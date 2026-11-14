@@ -416,6 +416,8 @@ details.guide summary{font:700 16px var(--display);letter-spacing:-.035em}
       <span class="label" id="localProfileLabel">Profil</span>
       <div class="seg adjn-engine-seg" role="radiogroup" aria-labelledby="localProfileLabel">
         <label><input type="radio" name="adjnEngine" value="compressbase" checked><span>PRO MAX+</span></label>
+        <label><input type="radio" name="adjnEngine" value="editing-news"><span>Celyn</span></label>
+        <label><input type="radio" name="adjnEngine" value="zilem"><span>Celyn Beta</span></label>
       </div>
     </div>
     <p class="modedesc" id="modeDesc"></p>
@@ -2836,11 +2838,13 @@ const MODES={
   both:"Pro Max menjalankan Pro Max Method lalu encode ulang. Paling lengkap.",
   hq:"Pro menjalankan Pro Method saja, satu tahap.",
   enc:"Max menjalankan encode video saja, satu tahap.",
-  adjn:"Local menggunakan profil pemrosesan audio PRO MAX+.",
-  compressbase:"PRO MAX+: mempertahankan video dan frame rate, lalu menerapkan metode audio PRO MAX+."
+  adjn:"Local menggunakan engine pemrosesan ADJN.",
+  compressbase:"PRO MAX+: profil CompressBase yang sudah tersedia.",
+  "editing-news":"Celyn: Mengoptimalkan kualitas visual video dengan hasil yang lebih jernih dan tajam.",
+  zilem:"Celyn Beta: Pengembangan metode Celyn dengan pendekatan pemrosesan alternatif."
 };
 const getMethod=()=>document.querySelector('input[name="method"]:checked')?.value||"cloud";
-const getMode=()=>{if(getMethod()!=="local")return document.querySelector('input[name="mode"]:checked')?.value||"both";return document.querySelector('input[name="adjnEngine"]:checked')?.value==="compressbase"?"compressbase":"adjn";};
+const getMode=()=>{if(getMethod()!=="local")return document.querySelector('input[name="mode"]:checked')?.value||"both";return document.querySelector('input[name="adjnEngine"]:checked')?.value||"adjn";};
 const applyMode=()=>{$("modeDesc").textContent=MODES[getMode()]};
 const lockMode=b=>modeEls.forEach(r=>r.disabled=b);
 modeEls.forEach(r=>r.addEventListener("change",applyMode));applyMode();
@@ -2938,8 +2942,8 @@ start.addEventListener("click",async()=>{
       await runAdjnPatch();
       return;
     }
-    if(mode==="compressbase"){
-      await runCompressBasePatch();
+    if(mode==="compressbase"||mode==="editing-news"||mode==="zilem"){
+      await runCompressBasePatch(mode);
       return;
     }
     say("Membaca video…");progress(2);
@@ -3025,7 +3029,7 @@ start.addEventListener("click",async()=>{
     if(cloudPanel) cloudPanel.hidden=local;
     syncStageLabels();
   }
-  function engineName(v){return 'PRO MAX+';}
+  function engineName(v){return v==='editing-news'?'Celyn':v==='zilem'?'Celyn Beta':'PRO MAX+';}
   function syncStageLabels(){
     const local=document.querySelector('input[name="method"]:checked')?.value==='local';
     const eng=document.querySelector('input[name="adjnEngine"]:checked')?.value||'3.1';
@@ -3037,19 +3041,22 @@ start.addEventListener("click",async()=>{
   document.querySelectorAll('input[name="adjnEngine"]').forEach(r=>r.addEventListener('change',syncStageLabels));
   syncAdjnPanel();
 
-  window.runCompressBasePatch=async function(){
+  window.runCompressBasePatch=async function(profile){
+    const selectedProfile=profile||document.querySelector('input[name="adjnEngine"]:checked')?.value||'compressbase';
+    const profileName=selectedProfile==='editing-news'?'Celyn':selectedProfile==='zilem'?'Celyn Beta':'PRO MAX+';
+    const postingDevice=selectedProfile==='editing-news'?'editing-news':selectedProfile==='zilem'?'zilem':'sl-sr';
     const file=selected;
     if(!file) throw new Error('Pilih video terlebih dahulu.');
-    if(!/\.mp4$/i.test(file.name) && file.type!=='video/mp4') throw new Error('Profil PRO MAX+ membutuhkan file MP4.');
+    if(!/\.mp4$/i.test(file.name) && file.type!=='video/mp4') throw new Error('Profil '+profileName+' membutuhkan file MP4.');
     if(objUrl){URL.revokeObjectURL(objUrl);objUrl=null;}
     result.hidden=true;proc.hidden=false;progress(3);
-    stage(hq,'active','Memulai PRO MAX+');
+    stage(hq,'active','Memulai '+profileName);
     stage(enc,'skip','Tidak digunakan');
     say('Memuat CompressBase Method…');
     const {patchVideo}=await import('https://compressbase.com/method-api/client.mjs');
     if(typeof patchVideo!=='function') throw new Error('CompressBase patchVideo tidak tersedia.');
     say('Memproses video secara lokal…');progress(15);
-    const output=await patchVideo(file,{postingDevice:'sl-sr'});
+    const output=await patchVideo(file,{postingDevice,assetsBaseURL:'https://compressbase.com',onStatus:message=>{if(message)say(String(message));}});
     if(!(output instanceof Blob) || output.size<64) throw new Error('API tidak mengembalikan MP4 hasil yang valid.');
 
     // Tulis tag ke struktur MP4 yang benar: moov/udta/meta/ilst/©too.
@@ -3073,8 +3080,8 @@ start.addEventListener("click",async()=>{
     downloadLink.download=outName;
     $('outMeta').textContent=outName+' · '+mb(blob.size)+'';
     result.hidden=false;progress(100);
-    stage(hq,'done','Selesai · PRO MAX+');
-    say('Selesai — PRO MAX+','ok');
+    stage(hq,'done','Selesai · '+profileName);
+    say('Selesai — '+profileName,'ok');
     if(typeof saveHistory==='function')saveHistory({name:file.name,date:new Date().toLocaleString('id-ID'),size:mb(blob.size),status:'Selesai'});
     result.scrollIntoView({behavior:'smooth',block:'nearest'});
   };
