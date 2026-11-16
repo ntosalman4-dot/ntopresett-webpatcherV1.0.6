@@ -536,7 +536,97 @@ details[open] > summary {
 }
 </style>
 
-</head>
+<style id="tiktok-checker-style">
+.tool-intro{margin:-3px 0 16px;color:#9d92ae;font-size:13px}
+.ff-label{display:block;margin:18px 0 8px;color:#c4c8cd;font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+.ff-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:14px}
+.ff-bar{height:7px;border-radius:99px;background:#2a2e33;border:1px solid #343940;overflow:hidden;margin-top:8px}
+.ff-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#aeb4bc,#f2f3f5);transition:width .25s}
+.ff-bar.indet i{width:35%;animation:ffslide 1.1s ease-in-out infinite alternate}
+@keyframes ffslide{from{transform:translateX(0)}to{transform:translateX(185%)}}
+.vr-status{margin:0 0 14px;padding:11px 13px;border:1px solid #30343a;border-radius:12px;background:#141619;color:#b2b7be;font-size:12.5px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:48px;padding:14px;border-radius:13px;font:650 13.5px 'Space Grotesk',sans-serif;cursor:pointer;border:1px solid transparent}
+.btn.main{background:linear-gradient(180deg,#f5f6f7,#d7dbe0);color:#101215;border-color:#fff}
+.btn.ghost{background:#1a1d21;border-color:#3b4047;color:#e8eaed}
+.card{background:#17191d;border:1px solid #34383e;border-radius:16px;padding:16px;color:#f3eff9}
+[hidden]{display:none!important}
+#tsCard .tt-input{width:100%;padding:13px 15px;border-radius:14px;border:1px solid var(--line,#333);background:var(--ink,#0b0b0c);color:inherit;font:inherit;font-size:14px;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+#tsCard .tt-input:focus{outline:none;border-color:#9aa0a8;box-shadow:0 0 0 3px #ffffff14}
+#tsCard .ts-head{display:flex;gap:12px;align-items:center;margin:14px 0 12px}
+#tsCard .ts-cover{width:64px;height:86px;object-fit:cover;border-radius:10px;border:1px solid #30343a;background:#141619;flex:none}
+#tsCard .ts-head b{display:block;font-size:14px}
+#tsCard .ts-head p{margin:4px 0 0;font-size:12px;line-height:1.45;color:#9298a0;overflow-wrap:anywhere}
+#tsCard .ts-tags{white-space:pre-line;margin:0 0 12px;padding:11px 13px;border-radius:12px;border:1px solid #30343a;background:#141619;font:600 13px/1.6 var(--body);color:#e6e8ea;overflow-wrap:anywhere}
+#tsCard .vr-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:520px){#tsCard .vr-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#tsCard .ts-list{border:1px solid #30343a;border-radius:14px;background:#141619;padding:2px 14px;margin:0 0 12px}
+#tsCard .ts-r{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px dashed #30343a;font-size:13px}
+#tsCard .ts-r:last-child{border-bottom:0}
+#tsCard .ts-r span{color:#9298a0;flex:none}
+#tsCard .ts-r b{text-align:right;font-weight:700;color:#f5f6f7;overflow-wrap:anywhere;min-width:0}
+#tsCard .ts-r b.mute{color:#7d838b;font-weight:500}
+#tsCard .ts-prog{margin:12px 0;padding:12px 14px;border:1px solid #30343a;border-radius:14px;background:#ffffff06}
+#tsCard .ts-prog[hidden]{display:none}
+#tsCard .ts-prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px}
+#tsCard .ts-prog-top b{font-variant-numeric:tabular-nums;font-size:15px}
+#tsCard .ts-prog .ff-bar i{transition:width .12s linear}
+#tsCard .ts-prog .ff-bar.indet i{width:35%}
+#tsCard .ts-prog-sub{margin-top:7px;font-size:12px;color:#9aa0a8;font-variant-numeric:tabular-nums;min-height:1em}
+#tsCard #tsStatus{margin:12px 0 0;padding:9px 13px;display:flex;align-items:center;gap:8px;line-height:1.4;font-weight:600}
+#tsCard #tsStatus:empty{display:none}
+#tsCard .ts-badge{margin-left:auto;flex:none;padding:2px 9px;border-radius:999px;border:1px solid #2f6f8f;background:#1d3a4a;color:#5cc6f5;font-size:11px;font-weight:700;letter-spacing:.02em}
+#tsCard #tsResult{margin-top:16px;padding-top:16px;border-top:1px solid var(--line,#2a2e33)}
+#tsCard .ts-head{margin:0 0 14px;align-items:flex-start}
+#tsCard .ts-head p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+#tsCard .ts-prog{margin:16px 0 0}
+#tsCard #tsResult .ff-actions{margin-top:0}
+#tsCard .ts-url{padding:12px 14px;border-radius:12px;border:1px solid #30343a;background:#141619;font-size:13px;overflow-wrap:anywhere;margin:6px 0 12px;color:#e6e8ea}
+
+/* TikTok Checker — premium dark visual refresh (CSS only) */
+#tiktokCheckerCard{background:transparent!important}
+#tsCard{position:relative;padding:22px!important;border:0!important;border-radius:0!important;background:linear-gradient(155deg,#1b1e23 0%,#141619 58%,#111316 100%)!important;color:#f4f5f7!important;box-shadow:none!important}
+#tsCard h2{margin:0 0 12px!important;font-size:clamp(21px,5vw,25px)!important;line-height:1.2!important;letter-spacing:-.045em!important;font-weight:750!important;color:#f7f7f9!important}
+#tsCard .tool-intro{margin:0 0 24px!important;max-width:48ch;color:#a4a9b2!important;font-size:14px!important;line-height:1.7!important}
+#tsCard .ff-label{margin:22px 0 9px!important;color:#c6cbd2!important;font-size:11px!important;letter-spacing:.13em!important;font-weight:750!important}
+#tsCard .tt-input{min-height:58px!important;padding:16px 17px!important;border-radius:17px!important;border:1px solid #353a42!important;background:#0c0e11!important;color:#f5f6f8!important;font-size:14px!important;box-shadow:inset 0 1px 0 #ffffff08,0 7px 20px #00000018!important}
+#tsCard .tt-input::placeholder{color:#707782!important;opacity:1}
+#tsCard .tt-input:focus{border-color:#aeb6c1!important;box-shadow:0 0 0 4px #dce3ed12,0 8px 22px #00000020!important}
+#tsCard .ff-actions{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(104px,.28fr)!important;gap:10px!important;margin-top:14px!important}
+#tsCard .btn{min-height:54px!important;padding:14px 16px!important;border-radius:16px!important;font-size:14px!important;font-weight:750!important;letter-spacing:-.015em!important;transition:transform .18s ease,filter .18s ease,border-color .18s ease,box-shadow .18s ease!important;-webkit-tap-highlight-color:transparent}
+#tsCard .btn:active{transform:scale(.985)!important}
+#tsCard .btn.main{background:linear-gradient(180deg,#fff 0%,#dfe3e8 100%)!important;border:1px solid #fff!important;color:#101216!important;box-shadow:0 7px 18px #00000022,inset 0 1px 0 #ffffff!important}
+#tsCard .btn.main:hover{filter:brightness(1.04)}
+#tsCard .btn.ghost{background:linear-gradient(180deg,#22262c,#1a1d22)!important;border:1px solid #424852!important;color:#edf0f4!important;box-shadow:inset 0 1px 0 #ffffff08!important}
+#tsCard .btn.ghost:hover{border-color:#737c88!important;background:#252a31!important}
+#tsCard .vr-status{min-height:0;margin:14px 0 0!important;padding:12px 14px!important;border:1px solid #343941!important;border-radius:15px!important;background:#101216!important;color:#b9c0c9!important;font-size:12.5px!important;line-height:1.55!important;overflow-wrap:anywhere}
+#tsCard #tsStatus:empty{display:none!important}
+#tsCard #tsStatus:not(:empty){animation:tsStatusIn .22s ease both}
+@keyframes tsStatusIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+#tsCard .ts-prog{padding:15px!important;border-radius:16px!important;border-color:#373d46!important;background:#101317!important}
+#tsCard .ff-bar{height:8px!important;border:0!important;background:#303640!important}
+#tsCard .ff-bar i{border-radius:99px;background:linear-gradient(90deg,#aeb8c5,#f5f7fa)!important}
+#tsCard #tsResult{margin-top:22px!important;padding-top:20px!important;border-top:1px solid #343941!important;animation:tsStatusIn .28s ease both}
+#tsCard .ts-head{gap:14px!important;align-items:center!important;margin:0 0 16px!important}
+#tsCard .ts-cover{width:76px!important;height:102px!important;border-radius:14px!important;border:1px solid #414751!important;box-shadow:0 8px 22px #00000035!important}
+#tsCard .ts-head b{font-size:14px!important;line-height:1.45!important;color:#f5f6f8!important}
+#tsCard .ts-head p{margin-top:5px!important;color:#a2a9b3!important;font-size:12px!important;line-height:1.55!important}
+#tsCard .ts-list{padding:4px 15px!important;margin:0 0 12px!important;border:1px solid #353b44!important;border-radius:16px!important;background:linear-gradient(145deg,#191d22,#13161a)!important}
+#tsCard .ts-r{gap:12px!important;padding:13px 0!important;border-bottom:1px solid #30353d!important;font-size:12.5px!important;line-height:1.45!important}
+#tsCard .ts-r span{color:#a0a7b1!important}
+#tsCard .ts-r b{color:#f1f3f6!important;font-weight:700!important}
+#tsCard .ts-url{padding:13px 14px!important;border:1px solid #373d46!important;border-radius:14px!important;background:#0d1013!important;color:#cbd1d9!important;font-size:12px!important;line-height:1.55!important}
+#tsCard #tsResult .ff-actions{grid-template-columns:1fr 1fr!important;margin-top:12px!important}
+#tsCard #tsResult .btn{min-height:48px!important;font-size:12px!important}
+@media(max-width:420px){
+ #tsCard{padding:18px!important}
+ #tsCard .ff-actions{grid-template-columns:minmax(0,1fr) 104px!important;gap:8px!important}
+ #tsCard .btn{padding:12px 10px!important;font-size:13px!important}
+ #tsCard .ts-r{font-size:12px!important}
+ #tsCard .ts-cover{width:68px!important;height:92px!important}
+}
+@media(prefers-reduced-motion:reduce){#tsCard *,#tsCard *:before,#tsCard *:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+</style>\n</head>
 <body>
 <main class="wrap">
 
@@ -608,6 +698,11 @@ details[open] > summary {
         <p>Kompres dan encode video dengan pengaturan bitrate, profil video, serta kontrol proses encoding.</p>
         <button type="button" class="tool-open-btn" data-open-tool="ffmpeg">Buka FFmpeg Compressor <span>↗</span></button>
       </article>
+      <article class="tool-launch-card">
+        <div class="tool-launch-icon">◎</div><span class="tool-tag">TIKTOK ANALYTICS</span><h3>TikTok Statistik Checker</h3>
+        <p>Cek statistik video TikTok, engagement, resolusi, FPS, bitrate, codec, dan Method.</p>
+        <button type="button" class="tool-open-btn" data-open-tool="tiktok">Buka TikTok Checker <span>↗</span></button>
+      </article>
     </div>
     <div class="tool-library-note"><b>Privasi & batasan</b><span>Video baru dibaca atau diunggah setelah lu memilih tool dan menjalankan aksinya. Tools ini memakai kemampuan browser dan backend patcher yang sudah tersedia.</span></div>
   </section>
@@ -633,6 +728,32 @@ details[open] > summary {
     </div>
     <button type="button" class="secondary-btn" id="fpsCheck">Perkirakan FPS dari pemutaran</button>
     <p class="tool-note" id="fpsNote">Catatan: perkiraan FPS melalui pemutaran bisa dibatasi refresh rate layar dan kemampuan perangkat. Ini bukan pengganti analisis codec/frame rate dari ffprobe.</p>
+  </section>
+  <section class="card tool-modal-tool" id="tiktokCheckerCard" hidden style="padding:0;overflow:hidden">
+<section class="card" id="tsCard">
+    <h2>TikTok Statistik</h2>
+    <p class="tool-intro">Tempel link video TikTok untuk melihat views, likes, engagement, dan detail videonya (resolusi, FPS, bitrate).</p>
+    <label class="ff-label" for="tsUrl">Link TikTok</label>
+    <input type="url" id="tsUrl" class="tt-input" inputmode="url" autocomplete="off" placeholder="https://www.tiktok.com/@user/video/123...">
+    <div class="ff-actions">
+      <button type="button" class="btn main" id="tsFetch">Ambil Statistik</button>
+      <button type="button" class="btn ghost" id="tsPaste">Tempel</button>
+    </div>
+    <p class="vr-status" id="tsStatus" role="status"></p>
+    <div class="ts-prog" id="tsProg" hidden aria-live="polite">
+      <div class="ts-prog-top"><span id="tsProgLabel">Mengunduh video…</span><b id="tsProgPct">0%</b></div>
+      <div class="ff-bar" id="tsBar"><i id="tsFill"></i></div>
+      <div class="ts-prog-sub" id="tsProgSub"></div>
+    </div>
+    <div id="tsResult" hidden>
+      <div class="ts-head"><img id="tsCover" class="ts-cover" alt=""><div><b id="tsAuthor"></b><p id="tsTitle"></p></div></div>
+      <div class="ts-list" id="tsMetaList"></div>
+      <div class="ts-list" id="tsStatList"></div>
+      <label class="ff-label">TikTok Video URL</label>
+      <div class="ts-url" id="tsLink"></div>
+      <div class="ff-actions"><button type="button" class="btn ghost" id="tsCopy">Salin Laporan</button><button type="button" class="btn ghost" id="tsRaw">Salin Data Mentah</button></div>
+    </div>
+  </section>
   </section>
   <section class="card tool-modal-tool" id="ffmpegCard" hidden style="padding:8px;overflow:hidden">
     <iframe id="ffmpegFrame" title="FFmpeg Video Compressor" loading="lazy" style="display:block;width:100%;height:78vh;min-height:680px;border:0;border-radius:14px;background:#08080a" referrerpolicy="no-referrer" allow="autoplay; fullscreen" allow="cross-origin-isolated"></iframe>
@@ -2850,9 +2971,9 @@ const toolOnly=[];
 function showWorkspace(which){const tools=which==="tools";document.body.classList.toggle("tools-mode",tools);patcherOnly.forEach(el=>{el.hidden=tools});toolOnly.forEach(el=>{el.hidden=!tools});toolsHeading.hidden=!tools;tabPatcher.classList.toggle("active",!tools);tabTools.classList.toggle("active",tools);tabPatcher.setAttribute("aria-selected",String(!tools));tabTools.setAttribute("aria-selected",String(tools));if(tools)window.scrollTo({top:0,behavior:"smooth"});}
 tabPatcher.addEventListener("click",()=>showWorkspace("patcher"));tabTools.addEventListener("click",()=>showWorkspace("tools"));showWorkspace("patcher");
 
-const toolModal=$("toolModal"),toolModalTitle=$("toolModalTitle"),toolModalDescription=$("toolModalDescription"),inspectorCard=$("inspectorCard"),ffmpegCard=$("ffmpegCard");
+const toolModal=$("toolModal"),toolModalTitle=$("toolModalTitle"),toolModalDescription=$("toolModalDescription"),inspectorCard=$("inspectorCard"),ffmpegCard=$("ffmpegCard"),tiktokCheckerCard=$("tiktokCheckerCard");
 let lastToolOpener=null;
-function openTool(which,opener){lastToolOpener=opener||null;const isFfmpeg=which==="ffmpeg";inspectorCard.hidden=isFfmpeg;ffmpegCard.hidden=!isFfmpeg;toolModalTitle.textContent=isFfmpeg?"FFmpeg Video Compressor":"Resolution & FPS Checker";toolModalDescription.textContent=isFfmpeg?"Kompres video dengan tool encoder terintegrasi.":"Pilih video untuk memeriksa resolusi, rasio aspek, durasi, ukuran, dan estimasi frame rate.";toolModal.hidden=false;document.body.classList.add("modal-open");const close=toolModal.querySelector("[data-close-tool]");if(close)close.focus();
+function openTool(which,opener){lastToolOpener=opener||null;const isFfmpeg=which==="ffmpeg",isTikTok=which==="tiktok";inspectorCard.hidden=isFfmpeg||isTikTok;ffmpegCard.hidden=!isFfmpeg;tiktokCheckerCard.hidden=!isTikTok;toolModalTitle.textContent=isFfmpeg?"FFmpeg Video Compressor":isTikTok?"TikTok Statistik Checker":"Resolution & FPS Checker";toolModalDescription.textContent=isFfmpeg?"Kompres video dengan tool encoder terintegrasi.":isTikTok?"Ambil statistik dan detail teknis video TikTok.":"Pilih video untuk memeriksa resolusi, rasio aspek, durasi, ukuran, dan estimasi frame rate.";toolModal.hidden=false;document.body.classList.add("modal-open");const close=toolModal.querySelector("[data-close-tool]");if(close)close.focus();
 }
 function closeTool(){toolModal.hidden=true;document.body.classList.remove("modal-open");if(lastToolOpener)lastToolOpener.focus();}
 document.querySelectorAll("[data-open-tool]").forEach(btn=>btn.addEventListener("click",()=>openTool(btn.dataset.openTool,btn)));
@@ -3302,6 +3423,191 @@ start.addEventListener("click",async()=>{
     if(report.reason) console.info('ADJN passthrough reason:',report.reason);
   };
 })();
+</script>
+<script>
+{
+const $=id=>document.getElementById(id);
+const vrEl=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+async function copyText(t){let ok=false;try{await navigator.clipboard.writeText(t);ok=true}catch{}if(!ok){try{const ta=document.createElement("textarea");ta.value=t;ta.style.cssText="position:fixed;opacity:0";document.body.append(ta);ta.select();ok=document.execCommand("copy");ta.remove()}catch{}}return ok}
+/* ---- TikTok Statistik (tool): lewat Worker proxy, tanpa API key di browser ---- */
+(function(){
+  /* Isi dengan URL Worker proxy milikmu sendiri (endpoint: /info dan /dl) */
+  const PROXIES=["https://tiktok-statistik.ntosalman4.workers.dev"].map(u=>u.replace(/\/+$/,""));
+  const TAG_LABEL="Method";
+  /* Cache hasil baca header video (per ID video) di browser: video yang sudah dicek tidak diunduh ulang */
+  const CK="tsProbeCache.v1",CMAX=60;
+  const cget=id=>{try{const m=JSON.parse(localStorage.getItem(CK)||"{}");return m[id]||null;}catch(_){return null;}};
+  const cset=(id,v)=>{try{const m=JSON.parse(localStorage.getItem(CK)||"{}");m[id]={info:v.info,total:v.total,t:Date.now()};const ks=Object.keys(m);if(ks.length>CMAX)ks.sort((a,b)=>m[a].t-m[b].t).slice(0,ks.length-CMAX).forEach(k=>delete m[k]);localStorage.setItem(CK,JSON.stringify(m));}catch(_){}};
+  const urlIn=$("tsUrl"),st=$("tsStatus"),res=$("tsResult"),btn=$("tsFetch"),metaL=$("tsMetaList"),statL=$("tsStatList");
+  const say=(t,bad)=>{st.textContent=t||"";st.style.color=bad?"#ff6b6b":"";};
+  const n=v=>Number(v)||0,fmt=v=>n(v).toLocaleString("id-ID");
+  const dur=s=>{s=n(s);return s>=60?Math.floor(s/60)+"m "+(s%60)+"s":s+"s";};
+  const mb=b=>(b/1048576).toFixed(2)+" MB";
+  const abs=u=>!u?"":(u.startsWith("http")?u:"https://api.tikwmapi.com"+u);
+  function setRows(list,rows){list.textContent="";rows.forEach(r=>{const row=vrEl("div","ts-r");row.dataset.k=r[0];row.appendChild(vrEl("span","",r[1]));const b=vrEl("b",r[3]?"mute":"",r[2]);row.appendChild(b);list.appendChild(row);});}
+  function setVal(k,v,mute){const b=res.querySelector('.ts-r[data-k="'+k+'"] b');if(b){b.textContent=v;b.className=mute?"mute":"";}}
+  /* ---- Baca header MP4 (moov) dari awal stream saja, lalu hentikan unduhan ---- */
+  function boxes(b,dv,s,e){const o=[];let p=s;while(p+8<=e){let sz=dv.getUint32(p),h=8;const t=String.fromCharCode(b[p+4],b[p+5],b[p+6],b[p+7]);if(sz===1){sz=Number(dv.getBigUint64(p+8));h=16;}else if(sz===0)sz=e-p;if(sz<h||p+sz>e)break;o.push({t,s:p+h,e:p+sz});p+=sz;}return o;}
+  /* Jalan di top-level box. Hasil: {s,e} moov lengkap | {at} butuh data sampai offset itu | null bila tidak ada */
+  function findMoov(b){const dv=new DataView(b.buffer,b.byteOffset,b.byteLength);let p=0;for(;;){if(p+16>b.length)return{at:p+16};let sz=dv.getUint32(p),h=8;const t=String.fromCharCode(b[p+4],b[p+5],b[p+6],b[p+7]);if(sz===1){sz=Number(dv.getBigUint64(p+8));h=16;}else if(sz===0)return null;if(sz<h)return null;if(t==="moov")return p+sz<=b.length?{s:p+h,e:p+sz}:{at:p+sz};p+=sz;}}
+  /* Tag "@too" = atom ©too (encoding tool) di udta/meta/ilst; fallback scan byte kalau struktur tidak standar */
+  function readTool(b,dv,moov){
+    const dec=new TextDecoder("utf-8"),kid=(par,t)=>boxes(b,dv,par.s,par.e).find(x=>x.t===t);
+    const fromAtom=a=>{const d=kid(a,"data");return d?dec.decode(b.subarray(d.s+8,d.e)).replace(/\0+$/,"").trim():"";};
+    try{
+      const udta=kid(moov,"udta"),meta=udta&&kid(udta,"meta");
+      if(meta){
+        for(const off of [4,0]){const ilst=boxes(b,dv,meta.s+off,meta.e).find(x=>x.t==="ilst");if(ilst){const a=boxes(b,dv,ilst.s,ilst.e).find(x=>x.t==="\u00A9too");if(a){const v=fromAtom(a);if(v)return v;}}}
+      }
+    }catch(_){}
+    for(let i=moov.s;i+8<moov.e;i++){
+      if(b[i]===0xA9&&b[i+1]===0x74&&b[i+2]===0x6F&&b[i+3]===0x6F){
+        const bs=i-4,sz=dv.getUint32(bs);if(sz>16&&bs+sz<=moov.e){const d=boxes(b,dv,bs+8,bs+sz).find(x=>x.t==="data");if(d){const v=dec.decode(b.subarray(d.s+8,d.e)).replace(/\0+$/,"").trim();if(v)return v;}}
+      }
+    }
+    return "";
+  }
+  function parseMoov(b,moov){
+    const dv=new DataView(b.buffer,b.byteOffset,b.byteLength),kid=(par,t)=>boxes(b,dv,par.s,par.e).find(x=>x.t===t);
+    const tool=readTool(b,dv,moov);
+    for(const trak of boxes(b,dv,moov.s,moov.e).filter(x=>x.t==="trak")){
+      const mdia=kid(trak,"mdia");if(!mdia)continue;
+      const hdlr=kid(mdia,"hdlr");if(!hdlr||String.fromCharCode(b[hdlr.s+8],b[hdlr.s+9],b[hdlr.s+10],b[hdlr.s+11])!=="vide")continue;
+      const out={},tk=kid(trak,"tkhd");
+      if(tk){const v1=b[tk.s]===1,o=v1?88:76;out.w=Math.round(dv.getUint32(tk.s+o)/65536);out.h=Math.round(dv.getUint32(tk.s+o+4)/65536);}
+      const md=kid(mdia,"mdhd");let ts=0,du=0;
+      if(md){if(b[md.s]===1){ts=dv.getUint32(md.s+20);du=Number(dv.getBigUint64(md.s+24));}else{ts=dv.getUint32(md.s+12);du=dv.getUint32(md.s+16);}}
+      const minf=kid(mdia,"minf"),stbl=minf&&kid(minf,"stbl");
+      if(stbl){
+        const sts=kid(stbl,"stts");
+        if(sts){const c=dv.getUint32(sts.s+4);let cnt=0,tot=0;for(let i=0;i<c&&sts.s+8+i*8+8<=sts.e;i++){const sc=dv.getUint32(sts.s+8+i*8),dl=dv.getUint32(sts.s+12+i*8);cnt+=sc;tot+=sc*dl;}if(tot&&ts)out.fps=cnt/(tot/ts);}
+        const sd=kid(stbl,"stsd");if(sd)out.codec=String.fromCharCode(b[sd.s+12],b[sd.s+13],b[sd.s+14],b[sd.s+15]);
+      }
+      if(ts&&du)out.dur=du/ts;
+      out.tool=tool;
+      return out;
+    }
+    return tool?{tool}:null;
+  }
+  async function probe(url,base,onProg){
+    const ctl=new AbortController();
+    const fmtB=v=>v>=1048576?(v/1048576).toFixed(1)+" MB":Math.max(1,Math.round(v/1024))+" KB";
+    try{
+      const r=await fetch(base+"/dl?u="+encodeURIComponent(url),{signal:ctl.signal});
+      if(!r.ok)throw new Error("HTTP "+r.status);
+      const total=Number(r.headers.get("content-length"))||0;
+      if(!r.body||!r.body.getReader)throw new Error("stream tidak didukung");
+      const rd=r.body.getReader(),t0=performance.now();
+      let chunks=[],got=0,nextAt=262144,tl=0,buf=new Uint8Array(0),eof=false;
+      const merge=()=>{if(chunks.length){const m=new Uint8Array(buf.length+got-buf.length);let o=0;m.set(buf,0);o=buf.length;for(const c of chunks){m.set(c,o);o+=c.length;}buf=m;chunks=[];}};
+      for(;;){
+        const {done,value}=await rd.read();
+        if(done){eof=true;break;}
+        chunks.push(value);got+=value.length;
+        const now=performance.now();
+        if(now-tl>90){tl=now;onProg&&onProg(got,total,got/Math.max(.001,(now-t0)/1000),fmtB);}
+        if(got>=nextAt){
+          merge();
+          const f=findMoov(buf);
+          if(f&&f.s!==undefined){onProg&&onProg(total||got,total||got,0,fmtB,true);return{info:parseMoov(buf,f),total};}
+          if(!f)break;
+          nextAt=f.at;
+        }
+      }
+      merge();
+      onProg&&onProg(got,total||got,0,fmtB,true);
+      const f=findMoov(buf);
+      if(f&&f.s!==undefined)return{info:parseMoov(buf,f),total:total||got};
+      return{info:null,total:total||got};
+    }finally{try{ctl.abort();}catch(_){}}
+  }
+  const CODEC={avc1:"H.264 (AVC)",avc3:"H.264 (AVC)",hvc1:"H.265 (HEVC)",hev1:"H.265 (HEVC)",av01:"AV1",vp09:"VP9"};
+  async function run(){
+    const link=urlIn.value.trim();
+    if(!/tiktok\.com/i.test(link)){say("Tempel link TikTok yang valid dulu.",true);return;}
+    btn.disabled=true;res.hidden=true;say("Mengambil statistik…");
+    try{
+      let j=null,lastErr=null,used=PROXIES[0];
+      for(const base of PROXIES){
+        try{
+          const q=new URLSearchParams({url:link,hd:"1"});
+          const r=await fetch(base+"/info?"+q);
+          if(!r.ok)throw new Error("HTTP "+r.status);
+          const x=await r.json();
+          if(x&&(x.code===10429||x.code===10430))throw new Error(x.msg||"Limit API tercapai");
+          if(!x||x.code!==0||!x.data)throw new Error((x&&x.msg)||"Video tidak ditemukan");
+          j=x;used=base;break;
+        }catch(e){lastErr=e;}
+      }
+      if(!j)throw lastErr||new Error("Semua proxy gagal");
+      const d=j.data,au=d.author||{};
+      const views=n(d.play_count),likes=n(d.digg_count),com=n(d.comment_count),sh=n(d.share_count),sv=n(d.collect_count),dl=n(d.download_count);
+      const eng=views?(likes+com+sh+sv)/views*100:0;
+      const name="@"+(au.unique_id||"unknown")+(au.nickname?" · "+au.nickname:"");
+      $("tsAuthor").textContent=name;$("tsTitle").textContent=d.title||"(tanpa judul)";
+      const cv=$("tsCover");cv.src=abs(d.cover||d.origin_cover);cv.hidden=!(d.cover||d.origin_cover);
+      const when=d.create_time?new Date(n(d.create_time)*1000).toLocaleString("id-ID",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}):"-";
+      let region="-";if(d.region){try{region=new Intl.DisplayNames(["id"],{type:"region"}).of(String(d.region).toUpperCase())||d.region;}catch(_){region=d.region;}}
+      window.__tsRaw=j;
+      const mention="";
+      const isPhotos=Array.isArray(d.images)&&d.images.length;
+      const vurl=abs(d.hdplay)||abs(d.play);
+      const fallbackSize=n(d.hd_size)||n(d.size);
+      setRows(metaL,[
+        ["date","Tanggal Upload",when],["region","Region",region],
+        ["res","Resolusi",isPhotos?"-":"Membaca…",!isPhotos],["fps","Frame Rate (FPS)",isPhotos?"-":"Membaca…",!isPhotos],
+        ["bit","Bitrate",isPhotos?"-":"Membaca…",!isPhotos],["codec","Codec",isPhotos?"-":"Membaca…",!isPhotos],
+        ["dur","Durasi",d.duration!=null?dur(d.duration):"-"],["size","Ukuran File",fallbackSize?mb(fallbackSize):"-"],
+        ["method",TAG_LABEL,isPhotos?"-":"Membaca…",true]
+      ]);
+      setRows(statL,[["views","Views",fmt(views)],["likes","Likes",fmt(likes)],["com","Komentar",fmt(com)],["share","Dibagikan",fmt(sh)],["save","Disimpan",fmt(sv)],["dl","Unduhan",fmt(dl)],["eng","Engagement",eng.toFixed(2)+"%"]]);
+      $("tsLink").textContent=link;
+      res.hidden=false;say("Membaca detail video...");
+      if(!vurl||isPhotos){say("Selesai.");return;}
+      try{
+        const pg=$("tsProg"),bar=$("tsBar"),fill=$("tsFill");
+        const vid=d.id?String(d.id):"",hit=vid?cget(vid):null;
+        let info,total,fromCache=false;
+        if(hit&&hit.info){info=hit.info;total=hit.total;fromCache=true;}
+        else{
+          pg.hidden=false;bar.classList.add("indet");fill.style.width="";$("tsProgPct").textContent="…";$("tsProgLabel").textContent="Mengunduh video untuk dicek…";$("tsProgSub").textContent="";
+          const r=await probe(vurl,used,(got,tot,sp,fb,fin)=>{
+            if(tot){bar.classList.remove("indet");const v=Math.min(100,got*100/tot);fill.style.width=v+"%";$("tsProgPct").textContent=Math.round(v)+"%";}
+            $("tsProgLabel").textContent=fin?"Selesai dicek":"Mengunduh video untuk dicek…";
+            $("tsProgSub").textContent=fin?fb(got):(tot?fb(got)+" / "+fb(tot):fb(got))+" · "+fb(sp)+"/dtk";
+          });
+          info=r.info;total=r.total;
+          if(vid&&info)cset(vid,{info,total});
+        }
+        pg.hidden=true;
+        const size=total||fallbackSize;
+        if(size)setVal("size",mb(size));
+        const dd=n(d.duration)||(info&&info.dur)||0;
+        if(info){
+          setVal("res",info.w&&info.h?info.w+" x "+info.h:"-");
+          setVal("fps",info.fps?Number(info.fps.toFixed(2))+" fps":"-");
+          setVal("codec",CODEC[info.codec]||info.codec||"-");
+        }else{setVal("res","-");setVal("fps","-");setVal("codec","-");}
+        const tool=info&&info.tool||"";
+        setVal("method",tool||"-",!tool);
+        setVal("bit",size&&dd?(size*8/dd/1e6).toFixed(2)+" Mbps":"-");
+        say("Selesai");if(fromCache){const b=document.createElement("span");b.className="ts-badge";b.textContent="Cache";st.appendChild(b);}
+      }catch(e){$("tsProg").hidden=true;["res","fps","bit","codec","method"].forEach(k=>setVal(k,"-"));say("Statistik selesai, detail video gagal dibaca ("+(e&&e.message||e)+").");try{window.__diag.push("ttstats probe: "+e);}catch(_){}}
+    }catch(e){say("Gagal mengambil statistik: "+(e&&e.message||e),true);try{window.__diag.push("ttstats: "+e);}catch(_){}}
+    finally{btn.disabled=false;}
+  }
+  btn.addEventListener("click",run);
+  urlIn.addEventListener("keydown",e=>{if(e.key==="Enter")run();});
+  $("tsPaste").addEventListener("click",async()=>{try{urlIn.value=(await navigator.clipboard.readText()).trim();if(urlIn.value)run();}catch(_){say("Izin clipboard ditolak. Tempel manual ke kolom.",true);}});
+  $("tsRaw").addEventListener("click",async()=>{const ok=await copyText(JSON.stringify(window.__tsRaw||{},null,2));say(ok?"Data mentah disalin.":"Gagal menyalin.",!ok);});
+  $("tsCopy").addEventListener("click",async()=>{
+    const lines=["TikTok Statistik",$("tsAuthor").textContent,$("tsTitle").textContent,""];
+    res.querySelectorAll(".ts-r").forEach(r=>lines.push(r.children[0].textContent+": "+r.children[1].textContent));
+    lines.push("",$("tsLink").textContent);
+    const ok=await copyText(lines.join("\n"));say(ok?"Laporan disalin.":"Gagal menyalin.",!ok);
+  });
+})();
+}
 </script>
 </body>
 </html>
