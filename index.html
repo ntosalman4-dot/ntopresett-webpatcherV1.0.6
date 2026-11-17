@@ -1201,6 +1201,30 @@ body.tools-mode .workspace-nav::before{transform:translate3d(calc(100% + 6px),0,
 #supportModal .support-thanks{color:#287b4c!important;opacity:1!important}
 @media(max-width:600px){#supportModal .support-dialog{padding:21px 17px!important}}
 </style>
+
+<style id="nto-video-compare-mobile-fix-v20">
+/* Comparison demo sources are square (1:1); match the stage to avoid letterboxing. */
+.compare-stage{
+  aspect-ratio:1/1 !important;
+  height:auto !important;
+  max-height:none !important;
+  min-height:0 !important;
+  touch-action:pan-y;
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+.compare-stage video,
+.compare-after-clip{
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+.compare-stage video{object-fit:contain;pointer-events:none;}
+.compare-label,.compare-divider{ -webkit-user-select:none; user-select:none; }
+@media(max-width:440px){.compare-stage{border-radius:15px}}
+</style>
+
 </head>
 <body>
 
@@ -2311,6 +2335,22 @@ async function copyText(t){let ok=false;try{await navigator.clipboard.writeText(
   close.addEventListener('click',hide);
   modal.addEventListener('click',function(e){if(e.target.hasAttribute('data-support-close'))hide();});
   document.addEventListener('keydown',function(e){if(!modal.hidden&&e.key==='Escape')hide();});
+})();
+</script>
+
+
+<script id="nto-video-compare-context-guard-v20">
+(()=>{
+  const stage=document.getElementById('compareStage');
+  if(!stage)return;
+  const block=e=>{e.preventDefault();e.stopPropagation();};
+  stage.addEventListener('contextmenu',block,true);
+  stage.addEventListener('dragstart',block,true);
+  stage.addEventListener('selectstart',block,true);
+  stage.querySelectorAll('video').forEach(v=>{
+    v.setAttribute('draggable','false');
+    v.addEventListener('contextmenu',block,true);
+  });
 })();
 </script>
 
