@@ -1225,6 +1225,263 @@ body.tools-mode .workspace-nav::before{transform:translate3d(calc(100% + 6px),0,
 @media(max-width:440px){.compare-stage{border-radius:15px}}
 </style>
 
+
+<style id="nto-neo-brutal-retro-tech">
+/* NTO — Neo-Brutalism x Retro-Tech visual layer
+   Visual-only overrides. Existing markup, processing logic and handlers stay intact. */
+:root{
+  --ink:#f2eddf;
+  --surface:#fffaf0;
+  --raise:#e8e0cf;
+  --line:#171717;
+  --line2:#171717;
+  --text:#171717;
+  --muted:#5b574f;
+  --violet:#2855f5;
+  --violet-d:#173bc0;
+  --ok:#b9e85a;
+  --err:#ef553e;
+  --display:"Plus Jakarta Sans",sans-serif;
+  --body:"Inter",sans-serif;
+  color-scheme:light;
+}
+html{color-scheme:light!important;background:#f2eddf}
+body{
+  color:#171717!important;
+  background-color:#f2eddf!important;
+  background-image:
+    linear-gradient(rgba(23,23,23,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(23,23,23,.055) 1px,transparent 1px)!important;
+  background-size:22px 22px!important;
+  padding:24px 14px 52px!important;
+  letter-spacing:-.015em;
+}
+body::before{
+  inset:0!important;height:100%!important;
+  background:radial-gradient(circle at 88% 4%,rgba(40,85,245,.12),transparent 25%),
+             radial-gradient(circle at 5% 30%,rgba(255,107,53,.10),transparent 22%)!important;
+}
+.wrap{width:min(100%,820px)!important;gap:20px!important}
+.head{padding:8px 4px 12px!important;gap:16px!important}
+.logo{
+  border:3px solid #171717!important;border-radius:13px!important;
+  box-shadow:5px 5px 0 #171717!important;
+}
+.head h1{color:#171717!important;font-weight:900!important;letter-spacing:-.075em!important}
+.head h1 small{
+  border:2px solid #171717!important;border-radius:4px!important;
+  background:#c7f464!important;color:#171717!important;
+  box-shadow:3px 3px 0 #171717!important;
+}
+.head .brand-subtitle{color:#2855f5!important;letter-spacing:.16em!important}
+.head p,.head .brand-description{color:#5b574f!important}
+.card,.compare-card{
+  color:#171717!important;
+  background:#fffaf0!important;
+  border:2px solid #171717!important;border-radius:8px!important;
+  box-shadow:6px 6px 0 #171717!important;
+}
+.card h2,.compare-head h2{color:#171717!important;font-weight:900!important;letter-spacing:-.055em!important}
+#setup>h2::after{background:#171717!important;height:2px!important}
+.label,.ff-label{color:#4e4a43!important;font-weight:850!important;letter-spacing:.12em!important}
+.drop{
+  color:#171717!important;background:#e8e0cf!important;
+  border:2px dashed #171717!important;border-radius:7px!important;
+}
+.drop:hover,.drop.over{background:#dce4ff!important;border-color:#2855f5!important}
+.drop svg,.picked svg{color:#2855f5!important}
+.drop b,.picked b{color:#171717!important}
+.drop span,.picked span{color:#5b574f!important}
+.picked{background:#fffaf0!important;border:2px solid #171717!important;border-radius:7px!important}
+.picked button{border:2px solid #171717!important;border-radius:5px!important;color:#171717!important}
+.seg{
+  background:#e8e0cf!important;border:2px solid #171717!important;
+  border-radius:7px!important;padding:5px!important;gap:5px!important;
+}
+.seg span{color:#5b574f!important;border-radius:4px!important;font-weight:800!important}
+.seg input:checked+span{
+  color:#fff!important;background:#2855f5!important;
+  box-shadow:3px 3px 0 #171717!important;
+}
+.modedesc{color:#5b574f!important}
+.audio-fix-notice{
+  color:#171717!important;background:#e8f3cb!important;
+  border:2px solid #171717!important;border-left:6px solid #2855f5!important;
+  border-radius:6px!important;box-shadow:4px 4px 0 #171717!important;
+}
+.audio-fix-notice::before{background:#c7f464!important;color:#171717!important;border-radius:4px!important}
+.go,#start,.btn.main{
+  color:#fff!important;background:#2855f5!important;
+  border:2px solid #171717!important;border-radius:6px!important;
+  box-shadow:5px 5px 0 #171717!important;
+  font-weight:900!important;text-transform:uppercase!important;letter-spacing:.035em!important;
+}
+.go:hover:not(:disabled),#start:hover:not(:disabled),.btn.main:hover{
+  background:#ff6b35!important;transform:translate(-2px,-2px)!important;
+  box-shadow:7px 7px 0 #171717!important;
+}
+.go:active:not(:disabled),#start:active:not(:disabled){transform:translate(2px,2px)!important;box-shadow:2px 2px 0 #171717!important}
+.go:disabled,#start:disabled{background:#c9c3b7!important;color:#777!important;border-color:#777!important;box-shadow:none!important}
+.pct strong{color:#171717!important;text-shadow:2px 2px 0 #c7f464!important}
+.pct strong i,.pct>span{color:#5b574f!important}
+.bar,.mini{background:#e0d8c7!important;border:2px solid #171717!important;border-radius:3px!important}
+.fill,.mini i{background:#2855f5!important;box-shadow:none!important}
+.fill::after{opacity:.35!important}
+.timer{color:#171717!important;background:#c7f464!important;border:2px solid #171717!important;border-radius:4px!important}
+.step{
+  color:#171717!important;background:#f2eddf!important;
+  border:2px solid #171717!important;border-radius:6px!important;
+  box-shadow:3px 3px 0 #171717!important;
+}
+.step b{color:#171717!important}
+.step .sub,.step em{color:#5b574f!important}
+.dot{background:#fffaf0!important;border:2px solid #171717!important;color:#171717!important}
+.step[data-state=active]{background:#dce4ff!important;border-color:#2855f5!important;box-shadow:4px 4px 0 #2855f5!important}
+.step[data-state=active] .dot{border-color:#2855f5!important}
+.step[data-state=active] em{color:#173bc0!important}
+.step[data-state=done] .dot{background:#c7f464!important;border-color:#171717!important}
+.step[data-state=done] em{color:#41630c!important}
+details.more{border-color:#171717!important}
+details.more summary,details.guide summary{color:#171717!important;font-weight:850!important}
+.log{background:#171717!important;color:#c7f464!important;border:2px solid #171717!important;border-radius:5px!important}
+.result{background:#e8f3cb!important;border:2px solid #171717!important}
+.result .tick{background:#c7f464!important;border:2px solid #171717!important;border-radius:5px!important}
+.result .tick svg{color:#171717!important}
+.result p,.next .note{color:#5b574f!important}
+.btn{border-radius:5px!important;font-weight:850!important}
+.btn.ghost,.secondary-btn{
+  color:#171717!important;background:#e8e0cf!important;
+  border:2px solid #171717!important;border-radius:5px!important;
+  box-shadow:3px 3px 0 #171717!important;
+}
+.btn.ghost:hover,.secondary-btn:hover{background:#dce4ff!important;border-color:#171717!important}
+.next{border-color:#171717!important}
+.guide li{color:#5b574f!important}
+.guide li::before{background:#c7f464!important;color:#171717!important;border:2px solid #171717!important;border-radius:4px!important}
+.guide li b{color:#171717!important}
+.foot{color:#625d53!important}
+
+/* Retro-Tech tool library */
+.tool-tile,.metric,.history-item,.workspace-nav,.tool-library-note{
+  color:#171717!important;background:#e8e0cf!important;
+  border:2px solid #171717!important;border-radius:6px!important;
+  box-shadow:3px 3px 0 #171717!important;
+}
+.tool-tile .ti,.tool-launch-icon,.tool-file-icon{
+  color:#fff!important;background:#2855f5!important;
+  border:2px solid #171717!important;border-radius:5px!important;
+}
+.tool-tile b,.metric strong,.history-item b,.tool-library-head h2,
+.tool-launch-card h3,.tool-modal-head h2{color:#171717!important}
+.tool-tile p,.metric span,.metric small,.history-item span,
+.tool-library-head p:not(.eyebrow),.tool-launch-card p{color:#5b574f!important}
+.eyebrow,.tool-tag{color:#2855f5!important;font-weight:900!important}
+.folder-mark{color:#171717!important;background:#c7f464!important;border:2px solid #171717!important;border-radius:4px!important}
+.workspace-nav{background:#e8e0cf!important;padding:6px!important}
+.workspace-tab{color:#5b574f!important;border-radius:4px!important}
+.workspace-tab.active{color:#fff!important;background:#2855f5!important;border:2px solid #171717!important;box-shadow:3px 3px 0 #171717!important}
+.workspace-tab.active span,.workspace-tab.active small{color:#fff!important}
+.workspace-tab small{background:#171717!important;color:#fff!important;border-radius:3px!important}
+.tool-file-pick{background:#fffaf0!important;border:2px dashed #171717!important;border-radius:6px!important}
+.tool-file-pick b{color:#171717!important}.tool-file-pick small{color:#5b574f!important}
+.tool-workspace-heading h2{color:#171717!important}
+.tool-workspace-heading p{color:#5b574f!important}
+.tool-library-grid{gap:14px!important}
+.tool-launch-card{
+  color:#171717!important;background:#fffaf0!important;
+  border:2px solid #171717!important;border-radius:7px!important;
+  box-shadow:5px 5px 0 #171717!important;
+}
+.tool-launch-card:hover{transform:translate(-2px,-2px)!important;box-shadow:7px 7px 0 #171717!important;border-color:#171717!important}
+.tool-open-btn{
+  color:#fff!important;background:#2855f5!important;
+  border:2px solid #171717!important;border-radius:5px!important;
+  box-shadow:3px 3px 0 #171717!important;
+}
+.tool-open-btn:hover{background:#ff6b35!important}
+.tool-library-note b{color:#171717!important}.tool-library-note span{color:#5b574f!important}
+.tool-modal-scrim{background:#171717d9!important;backdrop-filter:blur(3px)!important}
+.tool-modal-panel{background:#fffaf0!important;border:3px solid #171717!important;border-radius:8px!important;box-shadow:8px 8px 0 #000!important}
+.tool-modal-head{background:#e8e0cf!important;border-bottom:2px solid #171717!important}
+.tool-modal-head p:last-child{color:#5b574f!important}
+.tool-modal-close{background:#ff6b35!important;color:#171717!important;border:2px solid #171717!important;border-radius:4px!important}
+.tool-modal-content .card{background:#fffaf0!important;border:2px solid #171717!important;border-radius:6px!important;box-shadow:4px 4px 0 #171717!important}
+
+/* Video comparison — crisp monitor / arcade treatment */
+.compare-card{background:#fffaf0!important}
+.compare-head p,.compare-note{color:#5b574f!important}
+.compare-pick{background:#e8e0cf!important;border:2px solid #171717!important;border-radius:5px!important}
+.compare-pick .pick-icon{background:#2855f5!important;color:#fff!important;border-radius:4px!important}
+.compare-pick b{color:#171717!important}.compare-pick small{color:#5b574f!important}
+.compare-stage{background:#171717!important;border:3px solid #171717!important;border-radius:6px!important;box-shadow:5px 5px 0 #2855f5!important}
+.compare-label{background:#c7f464!important;color:#171717!important;border:2px solid #171717!important;border-radius:3px!important;backdrop-filter:none!important}
+.compare-divider{background:#ff6b35!important;width:3px!important;box-shadow:none!important}
+.compare-knob{background:#ff6b35!important;color:#171717!important;border:3px solid #171717!important;border-radius:5px!important;box-shadow:3px 3px 0 #fff!important}
+.compare-range{accent-color:#2855f5!important}
+.compare-action{background:#2855f5!important;color:#fff!important;border:2px solid #171717!important;border-radius:4px!important;box-shadow:3px 3px 0 #171717!important}
+.compare-action:hover:not(:disabled){background:#ff6b35!important;color:#171717!important}
+
+/* QRIS support area */
+.support-card-premium{
+  color:#171717!important;background:#c7f464!important;
+  border:2px solid #171717!important;border-radius:7px!important;
+  box-shadow:6px 6px 0 #171717!important;
+}
+.support-card-premium .support-kicker{color:#171717!important;background:#fffaf0!important;border:2px solid #171717!important;border-radius:4px!important}
+.support-card-premium .support-copy h2,.support-card-premium .support-copy p{color:#171717!important}
+.support-card-premium .support-open{
+  color:#fff!important;background:#2855f5!important;border:2px solid #171717!important;
+  border-radius:5px!important;box-shadow:4px 4px 0 #171717!important;
+}
+.support-dialog{background:#fffaf0!important;border:3px solid #171717!important;border-radius:8px!important;box-shadow:8px 8px 0 #000!important}
+.support-dialog h2,.support-dialog>p{color:#171717!important}
+.support-qr-panel{border:2px solid #171717!important;border-radius:6px!important}
+.support-note{border:2px solid #171717!important;border-radius:4px!important}
+
+/* Form controls and consistent focus */
+input,textarea,select{accent-color:#2855f5}
+:focus-visible{outline:3px solid #ff6b35!important;outline-offset:3px!important}
+a{color:#173bc0}
+::selection{background:#2855f5;color:#fff}
+@media(hover:hover) and (pointer:fine){
+  .card:not(#proc):hover,.compare-card:hover{border-color:#171717!important;box-shadow:8px 8px 0 #171717!important}
+  .drop:hover,.picked:hover{transform:translate(-1px,-1px)!important}
+}
+@media(max-width:600px){
+  body{padding:16px 12px 38px!important;background-size:18px 18px!important}
+  .wrap{gap:16px!important}
+  .card,.compare-card{box-shadow:4px 4px 0 #171717!important}
+  .tool-launch-card{box-shadow:4px 4px 0 #171717!important}
+  .head h1{letter-spacing:-.065em!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+
+
+<style id="nto-scroll-motion">
+html{scroll-behavior:smooth}
+/* Scroll reveal: elemen masuk saat discroll ke bawah maupun ke atas */
+body.nto-scroll-ready .nto-scroll-reveal{
+  opacity:0;
+  transform:translate3d(0,28px,0) scale(.985);
+  transition:opacity .55s ease,transform .65s cubic-bezier(.2,.75,.25,1);
+  will-change:opacity,transform;
+}
+body.nto-scroll-ready .nto-scroll-reveal.nto-scroll-visible{
+  opacity:1;transform:translate3d(0,0,0) scale(1);
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  body.nto-scroll-ready .nto-scroll-reveal,
+  body.nto-scroll-ready .nto-scroll-reveal.nto-scroll-visible{
+    opacity:1;transform:none;transition:none;will-change:auto
+  }
+}
+</style>
+
+<style>.compare-note:empty{display:none}</style>
 </head>
 <body>
 
@@ -1470,7 +1727,7 @@ body.tools-mode .workspace-nav::before{transform:translate3d(calc(100% + 6px),0,
     </div>
     <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" aria-label="Geser untuk membandingkan video">
     <div class="compare-actions"><button type="button" class="compare-action" id="compareReset">Atur ke tengah</button></div>
-    <p class="compare-note" id="compareNote" aria-live="polite">Kedua video diputar sinkron; sistem otomatis mengoreksi perbedaan waktu selama halaman terbuka.</p>
+    <p class="compare-note" id="compareNote" aria-live="polite"></p>
   </section>
 
   <section class="card" id="historyCard">
@@ -1991,7 +2248,7 @@ if(mode==="compressbase"||mode==="editing-news"||mode==="zilem"){
       await Promise.all([beforeVideo.play(),afterVideo.play()]);
       started=true;
       if(!syncFrame) syncFrame=requestAnimationFrame(syncClocks);
-      note.textContent="Kedua video diputar sinkron. Sinkronisasi otomatis menjaga posisi video tetap sejajar selama halaman terbuka.";
+      note.textContent="";
     }catch(e){started=false;note.textContent="Ketuk area video sekali untuk mulai memutar kedua video.";}
   }
   // Jika salah satu video tertahan atau pengguna kembali ke tab, pulihkan pemutaran bersama.
@@ -2354,5 +2611,569 @@ async function copyText(t){let ok=false;try{await navigator.clipboard.writeText(
 })();
 </script>
 
+
+<script id="nto-scroll-reveal-v1">
+(()=>{
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const selectors=['.head','.card','.compare-card','.tool-launch-card','.support-card-premium','.footer'];
+  const nodes=[...new Set(selectors.flatMap(sel=>Array.from(document.querySelectorAll(sel))))];
+  if(reduce||!('IntersectionObserver' in window)||!nodes.length)return;
+  nodes.forEach((el,i)=>{
+    if(el.closest('[role="dialog"]'))return;
+    el.classList.add('nto-scroll-reveal');
+    el.style.transitionDelay=((i%4)*65)+'ms';
+  });
+  if(!document.querySelector('.nto-scroll-reveal'))return;
+  document.body.classList.add('nto-scroll-ready');
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting)entry.target.classList.add('nto-scroll-visible');
+      else entry.target.classList.remove('nto-scroll-visible');
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -35px 0px'});
+  document.querySelectorAll('.nto-scroll-reveal').forEach(el=>observer.observe(el));
+})();
+</script>
+
+<script id="nto-i18n">
+/* Nto.presett — ID / EN language layer (non-destructive).
+   Original Indonesian text is never edited in the source: every translated
+   text node / attribute remembers its original and is restored when you switch
+   back to Indonesian. Text written later by the app's own code is translated
+   on the fly. Unknown strings simply stay in their original language. */
+(function () {
+  "use strict";
+  if (window.__ntoI18n) return;
+
+  var KEY = "ntoLang";
+  var LANGS = ["id", "en"];
+
+  /* ---------- dictionary: Indonesian (exact text) -> English ---------- */
+  var D = {
+    /* welcome / header / update notice */
+    "Selamat Datang!": "Welcome!",
+    "Selamat datang di Nto.presett Web Patcher. Proses video dengan metode dan profil yang tersedia, lalu siapkan hasilnya untuk diunggah ke TikTok Web.": "Welcome to Nto.presett Web Patcher. Process your video with the available methods and profiles, then get the result ready to upload to TikTok Web.",
+    "Gabung Saluran WhatsApp": "Join the WhatsApp Channel",
+    "Ikuti saluran resmi untuk mendapatkan informasi dan pembaruan terbaru.": "Follow the official channel for the latest information and updates.",
+    "Gabung": "Join",
+    "Mulai Sekarang": "Get Started",
+    "Popup ini hanya ditampilkan saat kunjungan pertama.": "This popup is only shown on your first visit.",
+    "Proses videomu dengan Metode lalu upload ke TikTok Web.": "Process your video with the Method, then upload it to TikTok Web.",
+    "Notifikasi pembaruan": "Update notification",
+    "Informasi resmi · Nto.presett": "Official info · Nto.presett",
+    "Ada Pembaruan Terbaru": "A New Update Is Available",
+    "Ikuti Saluran WhatsApp Nto.presett untuk melihat informasi, pengumuman, dan pembaruan terbaru.": "Follow the Nto.presett WhatsApp Channel for the latest information, announcements, and updates.",
+    "Lihat Pembaruan": "View Updates",
+    "Tutup notifikasi": "Close notification",
+    "Navigasi utama": "Main navigation",
+
+    /* patcher */
+    "Pilih atau seret video ke sini": "Choose or drag a video here",
+    "MP4, MOV, atau format video lain": "MP4, MOV, or other video formats",
+    "Hapus video": "Remove video",
+    "Metode": "Method",
+    "Profil": "Profile",
+    "Proses video": "Process video",
+    "Pro Max menjalankan Pro Max Method lalu encode ulang. Paling lengkap.": "Pro Max runs the Pro Max Method, then re-encodes. The most complete option.",
+    "Pro menjalankan Pro Method saja, satu tahap.": "Pro runs the Pro Method only, a single stage.",
+    "Max menjalankan encode video saja, satu tahap.": "Max runs video encoding only, a single stage.",
+    "PRO MAX+: Profil bawaan dengan optimasi tambahan untuk hasil pemrosesan yang lebih maksimal.": "PRO MAX+: The default profile with extra optimizations for stronger processing results.",
+    "Celyn: Mengoptimalkan kualitas visual video dengan hasil yang lebih jernih dan tajam.": "Celyn: Improves the video's visual quality for a clearer, sharper result.",
+    "Perbaikan audio telah diterapkan. Identifikasi audio kini berjalan normal.": "Audio fix applied. Audio identification now works normally.",
+
+    /* tools library */
+    "Tools tambahan untuk menganalisis video secara mandiri, tanpa mengubah pilihan video utama di Patcher.": "Extra tools to analyze videos on their own, without changing the main video selected in the Patcher.",
+    "Periksa dimensi video dan rasio aspek, lalu estimasi FPS dari frame yang diputar. FPS adalah perkiraan, bukan metadata codec akurat.": "Check video dimensions and aspect ratio, then estimate FPS from the frames played. FPS is an estimate, not accurate codec metadata.",
+    "Buka FPS Checker": "Open FPS Checker",
+    "Kompres dan encode video dengan pengaturan bitrate, profil video, serta kontrol proses encoding.": "Compress and encode video with bitrate settings, a video profile, and encoding process controls.",
+    "Buka FFmpeg Compressor": "Open FFmpeg Compressor",
+    "TikTok Statistik Checker": "TikTok Stats Checker",
+    "Cek statistik video TikTok, engagement, resolusi, FPS, bitrate, codec, dan Method.": "Check TikTok video stats, engagement, resolution, FPS, bitrate, codec, and Method.",
+    "Buka TikTok Checker": "Open TikTok Checker",
+    "Privasi & batasan": "Privacy & limitations",
+    "Video baru dibaca atau diunggah setelah lu memilih tool dan menjalankan aksinya. Tools ini memakai kemampuan browser dan backend patcher yang sudah tersedia.": "Videos are only read or uploaded after you pick a tool and run its action. These tools use the browser's capabilities and the patcher's existing backend.",
+    "Tutup jendela tools": "Close tools window",
+    "Analisis informasi dasar video.": "Analyze basic video information.",
+    "Tutup": "Close",
+    "Analisis video": "Video analysis",
+    "Pilih video langsung di tool ini. Tidak perlu memilih video di tab Patcher.": "Choose a video right in this tool. No need to select one in the Patcher tab.",
+    "Pilih video untuk dianalisis": "Choose a video to analyze",
+    "MP4, MOV, MKV, WebM, dan format video umum": "MP4, MOV, MKV, WebM, and other common video formats",
+    "Metadata video": "Video metadata",
+    "Durasi, ukuran file, format yang dikenali browser.": "Duration, file size, and format recognized by the browser.",
+    "Resolusi dan rasio aspek terdeteksi otomatis.": "Resolution and aspect ratio are detected automatically.",
+    "Resolusi": "Resolution",
+    "Belum dipilih": "Not selected",
+    "Pilih video untuk memulai": "Choose a video to start",
+    "Durasi": "Duration",
+    "Durasi yang terbaca browser": "Duration as read by the browser",
+    "Ukuran file": "File size",
+    "Ukuran file asli": "Original file size",
+    "Belum dianalisis": "Not analyzed yet",
+    "Perlu pembaca metadata media khusus untuk angka akurat": "Needs a dedicated media metadata reader for accurate numbers",
+    "Perkirakan FPS dari pemutaran": "Estimate FPS from playback",
+    "Catatan: perkiraan FPS melalui pemutaran bisa dibatasi refresh rate layar dan kemampuan perangkat. Ini bukan pengganti analisis codec/frame rate dari ffprobe.": "Note: FPS estimated from playback can be capped by the screen refresh rate and device capability. This is not a substitute for codec/frame rate analysis from ffprobe.",
+    "Format tidak dikenali browser": "Format not recognized by the browser",
+    "Membaca…": "Reading…",
+    "Tidak tersedia": "Not available",
+    "Tidak terbaca": "Unreadable",
+    "Mengukur…": "Measuring…",
+    "Sedang mengukur…": "Measuring…",
+    "Ukur ulang FPS": "Re-measure FPS",
+    "Perkiraan berdasarkan frame yang berhasil ditampilkan saat pemutaran. Refresh rate layar/performa perangkat bisa membuat angka lebih rendah daripada FPS asli.": "Estimated from the frames successfully displayed during playback. Screen refresh rate or device performance can make the number lower than the real FPS.",
+    "Pilih video di panel Tools terlebih dahulu.": "Choose a video in the Tools panel first.",
+    "Browser ini belum mendukung pengukuran frame video.": "This browser doesn't support video frame measurement.",
+    "Video tidak dapat diputar browser.": "The browser can't play this video.",
+    "Frame video tidak cukup untuk menghitung perkiraan FPS.": "Not enough video frames to calculate an FPS estimate.",
+    "FPS tidak dapat diperkirakan di browser ini.": "FPS can't be estimated in this browser.",
+    "Pilih file video yang valid.": "Choose a valid video file.",
+
+    /* tiktok stats checker */
+    "TikTok Statistik": "TikTok Stats",
+    "Tempel link video TikTok untuk melihat views, likes, engagement, dan detail videonya (resolusi, FPS, bitrate).": "Paste a TikTok video link to see views, likes, engagement, and video details (resolution, FPS, bitrate).",
+    "Link TikTok": "TikTok link",
+    "Ambil Statistik": "Get Stats",
+    "Tempel": "Paste",
+    "Mengunduh video…": "Downloading video…",
+    "Salin Laporan": "Copy Report",
+    "Salin Data Mentah": "Copy Raw Data",
+    "Tempel link TikTok yang valid dulu.": "Paste a valid TikTok link first.",
+    "Mengambil statistik…": "Fetching stats…",
+    "Membaca detail video...": "Reading video details...",
+    "Selesai.": "Done.",
+    "Selesai dicek": "Check complete",
+    "Mengunduh video untuk dicek…": "Downloading video to check…",
+    "Tanggal Upload": "Upload Date",
+    "Ukuran File": "File Size",
+    "Komentar": "Comments",
+    "Dibagikan": "Shares",
+    "Disimpan": "Saves",
+    "Unduhan": "Downloads",
+    "(tanpa judul)": "(untitled)",
+    "Video tidak ditemukan": "Video not found",
+    "Limit API tercapai": "API limit reached",
+    "Semua proxy gagal": "All proxies failed",
+    "Izin clipboard ditolak. Tempel manual ke kolom.": "Clipboard permission denied. Paste manually into the field.",
+    "Data mentah disalin.": "Raw data copied.",
+    "Laporan disalin.": "Report copied.",
+    "Gagal menyalin.": "Copy failed.",
+
+    /* process / result */
+    "Proses": "Process",
+    "Waktu berjalan": "Elapsed time",
+    "Menyiapkan…": "Preparing…",
+    "Antre": "Queued",
+    "Menunggu": "Waiting",
+    "Berjalan": "Running",
+    "Selesai": "Done",
+    "Dilewati": "Skipped",
+    "Gagal": "Failed",
+    "Memulai": "Starting",
+    "Mengunggah": "Uploading",
+    "Mengunduh": "Downloading",
+    "Tidak dipakai": "Not used",
+    "Tidak digunakan": "Not used",
+    "Tidak selesai": "Not completed",
+    "Berhenti di sini": "Stopped here",
+    "Server memproses": "Server processing",
+    "Unduh": "Download",
+    "Jangan tutup halaman sampai proses selesai.": "Don't close the page until the process finishes.",
+    "Video siap": "Video ready",
+    "Unduh video": "Download video",
+    "Lanjut ke TikTok": "Continue to TikTok",
+    "Atur sampul": "Set cover",
+    "Atur sound": "Set sound",
+    "Proses video lain": "Process another video",
+    "Upload hasil akhir ke TikTok, lalu pilih sampul dan sound sendiri. Web ini tidak mengubah keduanya.": "Upload the final result to TikTok, then choose the cover and sound yourself. This site doesn't change either.",
+    "Membaca video…": "Reading video…",
+    "Mengunggah video…": "Uploading video…",
+    "Pro selesai. Mengambil hasil…": "Pro done. Fetching result…",
+    "Mengirim hasil Pro ke encoder…": "Sending Pro result to the encoder…",
+    "Mengirim video ke encoder…": "Sending video to the encoder…",
+    "Encode selesai. Mengunduh hasil akhir…": "Encoding done. Downloading final result…",
+    "Menyetel tag…": "Setting tag…",
+    "Proses gagal. Coba lagi.": "Process failed. Please try again.",
+    "Memuat CompressBase Method…": "Loading CompressBase Method…",
+    "Memproses video secara lokal…": "Processing video locally…",
+    "Menanam metadata Method By @nto.presett…": "Embedding metadata Method By @nto.presett…",
+    "Pilih video terlebih dahulu.": "Choose a video first.",
+    "File ini bukan video.": "This file is not a video.",
+    "Respons server tidak valid.": "Invalid server response.",
+    "Server tidak mengembalikan file_id.": "The server didn't return a file_id.",
+    "Server tidak mendukung Range download.": "The server doesn't support Range downloads.",
+    "Ukuran hasil download tidak valid.": "Invalid download result size.",
+    "CompressBase patchVideo tidak tersedia.": "CompressBase patchVideo is not available.",
+    "API tidak mengembalikan MP4 hasil yang valid.": "The API didn't return a valid MP4 result.",
+    "Penulis metadata MP4 tidak tersedia.": "The MP4 metadata writer is not available.",
+    "Gagal menulis metadata MP4.": "Failed to write MP4 metadata.",
+    "Format MP4 ini tidak mendukung penanaman tag udta/meta pada profil PRO MAX+.": "This MP4 format doesn't support embedding udta/meta tags in the PRO MAX+ profile.",
+
+    /* before / after compare */
+    "Lihat Perubahan Dari Nto.presett Web Patcher.": "See the Changes From Nto.presett Web Patcher.",
+    "Bandingkan video sebelum diproses dengan video yang kamu tambahkan pada sisi sesudah diproses.": "Compare the video before processing with the video you added on the processed side.",
+    "Sudah Di Proses Nto.presett": "Processed with Nto.presett",
+    "Upload Tiktok Biasa": "Regular TikTok Upload",
+    "Geser untuk membandingkan video": "Slide to compare videos",
+    "Atur ke tengah": "Center",
+    "Kedua video diputar sinkron; sistem otomatis mengoreksi perbedaan waktu selama halaman terbuka.": "Both videos play in sync; the system automatically corrects timing drift while the page is open.",
+    "Kedua video diputar sinkron. Sinkronisasi otomatis menjaga posisi video tetap sejajar selama halaman terbuka.": "Both videos play in sync. Automatic syncing keeps the video positions aligned while the page is open.",
+    "Ketuk area video sekali untuk mulai memutar kedua video.": "Tap the video area once to start playing both videos.",
+    "Menjaga kedua video tetap sinkron…": "Keeping both videos in sync…",
+    "Video tidak didukung browser ini. Coba Chrome terbaru.": "This browser doesn't support the video. Try the latest Chrome.",
+    "Video demo tidak dapat disiapkan. Coba buka ulang halaman di Chrome.": "The demo video couldn't be prepared. Try reopening the page in Chrome.",
+
+    /* history */
+    "Riwayat Proses": "Process History",
+    "Riwayat lokal di browser ini, maksimal 20 proses terakhir.": "Local history in this browser, up to the last 20 runs.",
+    "Belum ada riwayat proses.": "No process history yet.",
+    "Hapus riwayat": "Clear history",
+
+    /* guide */
+    "PANDUAN PENGGUNA": "USER GUIDE",
+    "Cara Penggunaan": "How to Use",
+    "Lima langkah mudah dari memilih video hingga siap dipublikasikan.": "Five easy steps from choosing a video to being ready to publish.",
+    "Pilih Video": "Choose a Video",
+    "Ketuk area unggah untuk memilih video, atau seret file ke kotak unggahan.": "Tap the upload area to choose a video, or drag the file into the upload box.",
+    "Pilih Metode dan Profil": "Choose a Method and Profile",
+    "Pilih metode pemrosesan dan profil yang ingin digunakan sebelum memulai proses video.": "Choose the processing method and the profile you want before starting the video process.",
+    "Mulai Pemrosesan": "Start Processing",
+    "Tekan": "Press",
+    "Proses Video": "Process Video",
+    ". Sistem menjalankan tiga tahapan ini secara berurutan:": ". The system runs these three stages in order:",
+    "Simpan Hasil": "Save the Result",
+    "Setelah status berhasil, unduh video dan simpan ke perangkat.": "Once the status shows success, download the video and save it to your device.",
+    "Publikasikan ke TikTok": "Publish to TikTok",
+    "Unggah hasilnya melalui": "Upload the result via",
+    ". Atur sampul dan tambahkan sound secara manual jika kamu menggunakan ekstensi nto.presett sound safe, lalu publikasikan.": ". Set the cover and add sound manually if you use the nto.presett sound safe extension, then publish.",
+    "Pastikan file hasil sudah tersimpan sebelum diunggah ke TikTok.": "Make sure the result file is saved before uploading it to TikTok.",
+
+    /* support */
+    "Bantu NTO.presett Terus Berkembang": "Help NTO.presett Keep Growing",
+    "Setiap dukungan kecil sangat berarti untuk membantu pengembangan.": "Every small contribution means a lot for development.",
+    "♥ Dukungan sukarela": "♥ Voluntary support",
+    "Dukung Developer": "Support the Developer",
+    "Terima Kasih atas Dukunganmu": "Thank You for Your Support",
+    "Scan kode QRIS menggunakan aplikasi e-wallet atau mobile banking pilihanmu. Masukkan nominal sesuai keinginanmu—dukungan sepenuhnya sukarela.": "Scan the QRIS code with the e-wallet or mobile banking app of your choice. Enter any amount you like—support is entirely voluntary.",
+    "QRIS · PEMBAYARAN AMAN": "QRIS · SECURE PAYMENT",
+    "Scan untuk mendukung": "Scan to support",
+    "Cara memberikan dukungan": "How to give support",
+    "Buka aplikasi pembayaran": "Open a payment app",
+    "Gunakan e-wallet atau mobile banking.": "Use an e-wallet or mobile banking.",
+    "Pilih menu Scan QRIS": "Choose the Scan QRIS menu",
+    "Arahkan kamera ke kode QR di samping.": "Point the camera at the QR code beside this.",
+    "Masukkan nominal": "Enter the amount",
+    "Sesuaikan dengan jumlah dukunganmu.": "Match it to the amount you'd like to give.",
+    "Konfirmasi pembayaran": "Confirm the payment",
+    "Periksa nama penerima sebelum membayar.": "Check the recipient's name before paying.",
+    "Terima kasih sudah ikut mendukung NTO.presett.": "Thank you for supporting NTO.presett.",
+
+    /* ffmpeg compressor (iframe) */
+    "MP4 H.264 · 1080×1920 · 60 FPS — diproses lokal di browser, tanpa unggah ke server.": "MP4 H.264 · 1080×1920 · 60 FPS — processed locally in the browser, no upload to a server.",
+    "1 · Video sumber": "1 · Source video",
+    "Pilih video": "Choose video",
+    "Ketuk atau seret file ke sini": "Tap or drag a file here",
+    "Ganti": "Change",
+    "2 · Pengaturan": "2 · Settings",
+    "Bitrate video (Mbps)": "Video bitrate (Mbps)",
+    "Kurangi bitrate": "Decrease bitrate",
+    "Bitrate dalam Mbps": "Bitrate in Mbps",
+    "Tambah bitrate": "Increase bitrate",
+    "Bitrate target": "Target bitrate",
+    "Perkiraan ukuran": "Estimated size",
+    "Kendali bitrate": "Bitrate control",
+    "Profil output (tetap)": "Output profile (fixed)",
+    "Menunggu…": "Waiting…",
+    "Batalkan": "Cancel",
+    "Tombol Pause tidak tersedia: WebCodecs/Mediabunny tidak menyediakan jeda yang aman. Batalkan benar-benar menghentikan proses.": "Pause isn't available: WebCodecs/Mediabunny doesn't offer a safe pause. Cancel really stops the process.",
+    "Log proses": "Process log",
+    "Hasil encoding": "Encoding result",
+    "Unduh MP4": "Download MP4",
+    "Encode video lain": "Encode another video",
+    "Mediabunny + WebCodecs (hardware) · dimuat saat dibutuhkan": "Mediabunny + WebCodecs (hardware) · loaded on demand",
+    "Persiapan engine": "Engine setup",
+    "Verifikasi hasil": "Result verification",
+    "menunggu": "waiting",
+    "Memuat Mediabunny…": "Loading Mediabunny…",
+    "Mediabunny siap": "Mediabunny ready",
+    "Memeriksa kemampuan browser…": "Checking browser capabilities…",
+    "Membaca container & track…": "Reading container & tracks…",
+    "Mengonfigurasi encoder…": "Configuring encoder…",
+    "Encoder hardware berjalan (GPU tidak dapat dipastikan)": "Hardware encoder running (GPU can't be confirmed)",
+    "Encoding selesai": "Encoding finished",
+    "Memeriksa file hasil…": "Checking result file…",
+    "Memverifikasi hasil…": "Verifying result…",
+    "MP4 valid": "MP4 valid",
+    "Selesai — file terverifikasi": "Done — file verified",
+    "Membatalkan…": "Cancelling…",
+    "Dibatalkan": "Cancelled",
+    "Sedang berjalan…": "Running…",
+    "Proses dibatalkan oleh pengguna.": "Process cancelled by the user.",
+    "Sumber sudah 1080×1920: tanpa resize, frame diteruskan langsung ke encoder (tanpa canvas).": "Source is already 1080×1920: no resize, frames are passed straight to the encoder (no canvas).",
+    "Standar Mediabunny (canvas)": "Mediabunny standard (canvas)",
+    "Standar Mediabunny (hook process tidak dipanggil oleh versi library ini)": "Mediabunny standard (process hook isn't called by this library version)",
+    "tidak ada": "none",
+    "tidak terukur": "not measured",
+    "Nama file": "File name",
+    "Ukuran": "Size",
+    "Codec video": "Video codec",
+    "Bitrate rata-rata (video+audio)": "Average bitrate (video+audio)",
+    "FPS (terukur)": "FPS (measured)",
+    "Hardware (WebCodecs) — GPU tidak terverifikasi": "Hardware (WebCodecs) — GPU not verified",
+    "Browser ini tidak mendukung WebCodecs. Gunakan browser lain (Chrome/Edge/Safari modern).": "This browser doesn't support WebCodecs. Use another browser (modern Chrome/Edge/Safari).",
+    "Browser menolak encoder H.264 hardware 1080×1920@60 pada bitrate ini. Turunkan bitrate.": "The browser rejected the hardware H.264 encoder at 1080×1920@60 for this bitrate. Lower the bitrate.",
+    "File kosong (0 byte).": "Empty file (0 bytes).",
+    "Browser ini tidak dapat memutar pratinjau hasil (mis. decoder H.264 tidak ada).": "This browser can't play a preview of the result (e.g. no H.264 decoder).",
+    "target; hasil bisa menyimpang": "target; the result may deviate",
+    "Ambil statistik dan detail teknis video TikTok.": "Get stats and technical details of a TikTok video.",
+    "Kompres video dengan tool encoder terintegrasi.": "Compress video with the built-in encoder tool.",
+    "Pilih video untuk memeriksa resolusi, rasio aspek, durasi, ukuran, dan estimasi frame rate.": "Choose a video to check resolution, aspect ratio, duration, size, and estimated frame rate.",
+    "Video demo gagal dibaca": "The demo video couldn't be read",
+    "stream tidak didukung": "stream not supported",
+    "butuh durasi video": "needs the video duration",
+    "diatur encoder": "set by the encoder",
+    "MP4 valid & dapat diputar": "MP4 valid & playable",
+    "MP4 valid (struktur valid)": "MP4 valid (valid structure)",
+    "Audio sumber tidak dapat di-encode ke AAC oleh browser ini. Audio tidak dibuang diam-diam.": "The source audio can't be encoded to AAC by this browser. Audio isn't silently dropped.",
+    "Encoder AAC tidak tersedia di browser ini.": "The AAC encoder isn't available in this browser.",
+    "Encoder selesai tetapi file kosong.": "The encoder finished but the file is empty.",
+    "File tidak memiliki track video yang dapat dibaca.": "The file has no readable video track.",
+    "H.264/AVC (tidak terbaca)": "H.264/AVC (unreadable)",
+    "Hasil tidak memiliki track audio (sumber mungkin tanpa audio).": "The result has no audio track (the source may have no audio).",
+    "Kesalahan tidak diketahui": "Unknown error",
+    "Resize Lanczos membutuhkan WebGL2 yang tidak tersedia. Gunakan browser yang mendukung WebGL2.": "Lanczos resize needs WebGL2, which isn't available. Use a browser that supports WebGL2.",
+    "Tidak ada resize (sumber sudah 1080×1920, frame langsung ke encoder)": "No resize (source is already 1080×1920, frames go straight to the encoder)",
+    "WebGL2 tidak tersedia.": "WebGL2 isn't available."
+  };
+
+  /* ---------- pattern rules for dynamic strings ---------- */
+  var TAILS = {
+    " — file mungkin melebihi batas upload server.": " — the file may exceed the server's upload limit.",
+    " — akses API ditolak; perlu diperiksa oleh pemilik server.": " — API access denied; the server owner needs to check it."
+  };
+  var RULES = [
+    [/^(\[[^\]]*\]\s+|\d{1,2}:\d{2}(?::\d{2})?(?:\.\d+)?\s+)([\s\S]+)$/, function (m, t) { var r = t(m[2]); return r === m[2] ? null : m[1] + r; }],
+    [/^Server memproses( · [\s\S]*)?$/, function (m) { return "Server processing" + (m[1] || ""); }],
+    [/^Mengunduh( · [\s\S]*)$/, function (m) { return "Downloading" + m[1]; }],
+    [/^Memulai ([\s\S]+)$/, function (m) { return "Starting " + m[1]; }],
+    [/^Selesai (—|·) ([\s\S]+)$/, function (m) { return "Done " + m[1] + " " + m[2]; }],
+    [/^Profil (.+) membutuhkan file MP4\.$/, function (m) { return "The " + m[1] + " profile requires an MP4 file."; }],
+    [/^Permintaan ditolak oleh server \(HTTP (\d+)\)(?:: (.*?))?( — .*)?$/, function (m) {
+      return "Request rejected by the server (HTTP " + m[1] + ")" + (m[2] ? ": " + m[2] : "") + (m[3] ? (TAILS[m[3]] || m[3]) : "");
+    }],
+    [/^Browser gagal menyelesaikan permintaan ke (.+?)\. Periksa koneksi internet, akses API, dan kebijakan CORS server\. Jika halaman API menampilkan Access Denied, endpoint upload tetap perlu diuji terpisah\.$/, function (m) {
+      return "The browser couldn't complete the request to " + m[1] + ". Check your internet connection, API access, and the server's CORS policy. If the API page shows Access Denied, the upload endpoint still needs to be tested separately.";
+    }],
+    [/^Permintaan ke (.+) melewati batas waktu browser\.$/, function (m) { return "The request to " + m[1] + " exceeded the browser timeout."; }],
+    [/^Ukuran download tidak cocok \((.+)\)\.$/, function (m) { return "Download size mismatch (" + m[1] + ")."; }],
+    [/^Jalur (\d+) gagal\.$/, function (m) { return "Path " + m[1] + " failed."; }],
+    [/^Rasio (.+?) · (.+)$/, function (m) { return "Ratio " + m[1] + " · " + m[2].replace("SD/ukuran lain", "SD/other size"); }],
+    [/^(.+) · (.+)\/dtk$/, function (m) { return m[1] + " · " + m[2] + "/s"; }],
+    [/^Statistik selesai, detail video gagal dibaca \(([\s\S]*)\)\.$/, function (m, t) { return "Stats done, but the video details couldn't be read (" + t(m[1]) + ")."; }],
+    [/^Gagal mengambil statistik: ([\s\S]*)$/, function (m, t) { return "Failed to fetch stats: " + t(m[1]); }],
+    [/^Mediabunny dimuat dari (.+)$/, function (m) { return "Mediabunny loaded from " + m[1]; }],
+    [/^Perkiraan hasil (.+) melebihi batas memori browser\. Turunkan bitrate\.$/, function (m) { return "Estimated result " + m[1] + " exceeds the browser's memory limit. Lower the bitrate."; }],
+    [/^[“"](.+)[”"] bukan file video yang dikenali\.$/, function (m) { return "“" + m[1] + "” isn't a recognized video file."; }],
+    [/^(.*) · membaca info…$/, function (m) { return m[1] + " · reading info…"; }],
+    [/^(.*) · info tidak terbaca oleh browser \(tetap dapat dicoba\)$/, function (m) { return m[1] + " · info couldn't be read by the browser (you can still try)"; }],
+    [/^Mulai · mode Hardware \(WebCodecs\) · (.+)$/, function (m) { return "Start · Hardware (WebCodecs) mode · " + m[1]; }],
+    [/^Analisis struktur gagal: ([\s\S]*)$/, function (m) { return "Structure analysis failed: " + m[1]; }],
+    [/^Browser tidak dapat mendecode codec video sumber \((.+)\)\.$/, function (m) { return "The browser can't decode the source video codec (" + m[1].replace("tidak diketahui", "unknown") + ")."; }],
+    [/^Hasil: ([\s\S]*)$/, function (m) { return "Result: " + m[1]; }],
+    [/^Input: ([\s\S]*)$/, function (m) { return "Input: " + m[1].replace("audio tidak ada", "audio none").replace(", durasi", ", duration"); }],
+    [/^Konversi tidak valid: ([\s\S]*)$/, function (m, t) { return "Invalid conversion: " + t(m[1]); }],
+    [/^Library Mediabunny gagal dimuat\.([\s\S]*)$/, function (m) { return "The Mediabunny library failed to load." + m[1]; }],
+    [/^Resolusi hasil (.+), bukan (.+)\.$/, function (m) { return "Result resolution is " + m[1] + ", not " + m[2] + "."; }],
+    [/^Gagal: ([\s\S]+)$/, function (m, t) { return "Failed: " + t(m[1]); }]
+  ];
+
+  /* ---------- lookup ---------- */
+  function norm(s) { return s.replace(/\s+/g, " ").trim().toLowerCase(); }
+  var EXACT = Object.create(null), LOWER = Object.create(null);
+  Object.keys(D).forEach(function (k) { EXACT[k] = D[k]; var n = norm(k); if (!(n in LOWER)) LOWER[n] = D[k]; });
+
+  function tr(s) {
+    if (typeof s !== "string" || !s) return s;
+    var m = s.match(/^(\s*)([\s\S]*?)(\s*)$/), core = m[2];
+    if (!core) return s;
+    var out = EXACT[core];
+    if (out === undefined) out = LOWER[norm(core)];
+    if (out === undefined) {
+      for (var i = 0; i < RULES.length; i++) {
+        var rm = RULES[i][0].exec(core);
+        if (rm) { var r = RULES[i][1](rm, tr); if (r != null && r !== core) { out = r; break; } }
+      }
+    }
+    return out === undefined ? s : m[1] + out + m[3];
+  }
+
+  /* ---------- engine: one instance per document ---------- */
+  var ATTRS = ["aria-label", "title", "placeholder", "alt"];
+  var SKIP = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, NOSCRIPT: 1, CODE: 0 };
+
+  function Engine(doc) {
+    this.doc = doc; this.lang = "id"; this.started = false;
+    this.text = new WeakMap(); this.attr = new WeakMap();
+    var self = this;
+    this.mo = new MutationObserver(function (list) { self.onMut(list); });
+  }
+  Engine.prototype.skipEl = function (el) {
+    return !!(el && (SKIP[el.tagName] || (el.hasAttribute && el.hasAttribute("data-no-i18n"))));
+  };
+  Engine.prototype.inSkipped = function (node) {
+    for (var el = node.nodeType === 1 ? node : node.parentNode; el && el.nodeType === 1; el = el.parentNode) {
+      if (this.skipEl(el)) return true;
+    }
+    return false;
+  };
+  Engine.prototype.processText = function (n) {
+    if (this.inSkipped(n)) return;
+    var rec = this.text.get(n), cur = n.nodeValue;
+    var orig = (rec && cur === rec.shown) ? rec.orig : cur;
+    var target = this.lang === "en" ? tr(orig) : orig;
+    if (!rec && target === orig) return;
+    this.text.set(n, { orig: orig, shown: target });
+    if (cur !== target) n.nodeValue = target;
+  };
+  Engine.prototype.processAttrs = function (el) {
+    if (this.inSkipped(el)) return;
+    var rec = this.attr.get(el) || {}, touched = false;
+    for (var i = 0; i < ATTRS.length; i++) {
+      var a = ATTRS[i];
+      if (!el.hasAttribute(a)) continue;
+      var cur = el.getAttribute(a), r = rec[a];
+      var orig = (r && cur === r.shown) ? r.orig : cur;
+      var target = this.lang === "en" ? tr(orig) : orig;
+      if (!r && target === orig) continue;
+      rec[a] = { orig: orig, shown: target }; touched = true;
+      if (cur !== target) el.setAttribute(a, target);
+    }
+    if (touched) this.attr.set(el, rec);
+  };
+  Engine.prototype.applyTree = function (root) {
+    if (!root) return;
+    if (root.nodeType === 3) { this.processText(root); return; }
+    if (root.nodeType !== 1 && root.nodeType !== 9 && root.nodeType !== 11) return;
+    if (root.nodeType === 1) { if (this.skipEl(root)) return; this.processAttrs(root); }
+    var self = this, doc = this.doc;
+    var w = doc.createTreeWalker(root, 1 | 4, {
+      acceptNode: function (n) {
+        if (n.nodeType === 1) return self.skipEl(n) ? 2 /* REJECT */ : 3 /* SKIP */;
+        return 1; /* ACCEPT */
+      }
+    });
+    var list = [], n;
+    while ((n = w.nextNode())) list.push(n);
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].nodeType === 3) this.processText(list[i]); else this.processAttrs(list[i]);
+    }
+  };
+  Engine.prototype.onMut = function (list) {
+    for (var i = 0; i < list.length; i++) {
+      var m = list[i];
+      if (m.type === "characterData") this.processText(m.target);
+      else if (m.type === "attributes") this.processAttrs(m.target);
+      else for (var j = 0; j < m.addedNodes.length; j++) this.applyTree(m.addedNodes[j]);
+    }
+  };
+  Engine.prototype.set = function (lang) {
+    this.lang = lang;
+    var d = this.doc;
+    this.mo.disconnect();
+    try { if (d.documentElement) d.documentElement.setAttribute("lang", lang); } catch (_) {}
+    this.applyTree(d.documentElement);
+    this.mo.takeRecords();
+    this.observe();
+  };
+  Engine.prototype.observe = function () {
+    this.mo.observe(this.doc.documentElement, {
+      subtree: true, childList: true, characterData: true,
+      attributes: true, attributeFilter: ATTRS
+    });
+  };
+
+  /* ---------- state + switch UI ---------- */
+  var current = "id", main = new Engine(document), frameEngine = null, frameDoc = null;
+
+  function stored() { try { return localStorage.getItem(KEY); } catch (_) { return null; } }
+  function detect() {
+    var s = stored();
+    if (LANGS.indexOf(s) > -1) return s;
+    var n = ((navigator.languages && navigator.languages[0]) || navigator.language || "id").toLowerCase();
+    return (n.indexOf("id") === 0 || n.indexOf("ms") === 0) ? "id" : "en";
+  }
+
+  var css = document.createElement("style");
+  css.id = "nto-i18n-style";
+  css.textContent =
+    ".nto-lang{display:inline-flex;gap:2px;padding:3px;width:max-content;margin-left:auto;border:1px solid #3b4047;border-radius:11px;background:#0b0c0e}" +
+    ".wrap>.nto-lang{justify-self:end;margin-bottom:-8px}" +
+    ".nto-lang button{min-width:42px;min-height:34px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:#a4a9b0;font:700 12px/1 Inter,system-ui,sans-serif;letter-spacing:.06em;cursor:pointer;transition:background .18s,color .18s}" +
+    ".nto-lang button:hover{color:#f5f6f7}" +
+    ".nto-lang button[aria-pressed=true]{background:linear-gradient(180deg,#f2f3f4,#d7dbe0);color:#111316;box-shadow:0 2px 8px #0005}" +
+    ".nto-lang button:focus-visible{outline:2px solid #f0f2f4;outline-offset:2px}" +
+    ".welcome-panel>.nto-lang{display:flex;margin:0 0 14px auto}" +
+    "@media(prefers-reduced-motion:reduce){.nto-lang button{transition:none}}";
+  document.head.appendChild(css);
+
+  function mkSwitch() {
+    var w = document.createElement("div");
+    w.className = "nto-lang";
+    w.setAttribute("role", "group");
+    w.setAttribute("aria-label", "Language / Bahasa");
+    w.setAttribute("data-no-i18n", "");
+    w.innerHTML =
+      '<button type="button" data-lang="id" lang="id" aria-label="Bahasa Indonesia">ID</button>' +
+      '<button type="button" data-lang="en" lang="en" aria-label="English">EN</button>';
+    return w;
+  }
+  function mount() {
+    var wrap = document.querySelector("main.wrap");
+    if (wrap) wrap.insertBefore(mkSwitch(), wrap.firstChild);
+    var panel = document.querySelector("#ntoWelcome .welcome-panel");
+    if (panel) panel.insertBefore(mkSwitch(), panel.firstChild);
+  }
+  function paintSwitches() {
+    var b = document.querySelectorAll(".nto-lang [data-lang]");
+    for (var i = 0; i < b.length; i++) b[i].setAttribute("aria-pressed", String(b[i].getAttribute("data-lang") === current));
+  }
+
+  function attachFrame() {
+    var f = document.getElementById("ffmpegFrame");
+    if (!f) return;
+    try {
+      var d = f.contentDocument;
+      if (!d || !d.documentElement || !d.body) return;
+      if (d !== frameDoc) { frameDoc = d; frameEngine = new Engine(d); }
+      frameEngine.set(current);
+    } catch (_) { /* cross-origin or not ready: stays original */ }
+  }
+
+  function setLang(l, persist) {
+    if (LANGS.indexOf(l) < 0) return;
+    current = l;
+    if (persist !== false) { try { localStorage.setItem(KEY, l); } catch (_) {} }
+    main.set(l);
+    attachFrame();
+    paintSwitches();
+    try { window.dispatchEvent(new CustomEvent("ntolangchange", { detail: { lang: l } })); } catch (_) {}
+  }
+
+  document.addEventListener("click", function (e) {
+    var b = e.target && e.target.closest && e.target.closest(".nto-lang [data-lang]");
+    if (b) setLang(b.getAttribute("data-lang"));
+  });
+
+  /* native alert() messages follow the language too */
+  var _alert = window.alert;
+  window.alert = function (msg) { return _alert.call(window, current === "en" ? tr(String(msg)) : msg); };
+
+  mount();
+  var f0 = document.getElementById("ffmpegFrame");
+  if (f0) f0.addEventListener("load", attachFrame);
+  setLang(detect(), false);
+
+  window.__ntoI18n = { set: function (l) { setLang(l); }, get: function () { return current; }, tr: tr };
+})();
+</script>
 </body>
 </html>
